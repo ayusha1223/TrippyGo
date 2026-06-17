@@ -13,30 +13,28 @@ function NavBar() {
 
           {/* Middle Menu */}
           <div className="hidden md:flex items-center gap-8 text-white font-medium">
-            <a href="#home" className="hover:text-orange-400">
-              Home
-            </a>
 
-            <a href="#destinations" className="hover:text-orange-400">
-              Destinations
-            </a>
+  <Link to="/" className="hover:text-orange-400">
+    Home
+  </Link>
 
-            <a href="#hotels" className="hover:text-orange-400">
-              Hotels
-            </a>
+  <Link to="/Maps" className="hover:text-orange-400">
+    Maps
+  </Link>
 
-            <a href="#adventures" className="hover:text-orange-400">
-              Adventures
-            </a>
+  <Link to="/hotels" className="hover:text-orange-400">
+    Hotels
+  </Link>
 
-            <a href="#maps" className="hover:text-orange-400">
-              Maps
-            </a>
+  <Link to="/adventures" className="hover:text-orange-400">
+    Adventures
+  </Link>
 
-            <a href="#ai-guide" className="hover:text-orange-400">
-              AI Guide
-            </a>
-          </div>
+  <Link to="/ai-guide" className="hover:text-orange-400">
+    AI Guide
+  </Link>
+
+</div>
 
           {/* Right Side */}
           <div className="flex items-center gap-4">

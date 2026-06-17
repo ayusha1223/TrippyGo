@@ -1,22 +1,15 @@
 import NavBar from "../components/NavBar";
+import Hero from "../components/Hero";
 import Stats from "../components/Stats";
 import Destinations from "../components/Destinations";
-import Hero from "../components/Hero.jsx";
-import Adventures from "../components/Adventures.jsx";
-import Footer from "../components/Footer.jsx";
-
+import Adventures from "../components/Adventures";
+import Footer from "../components/Footer";
 
 function LandingPage() {
-  return (
-    <>
-      <NavBar />
-      <Hero />
-      <Stats />
-      <Destinations />
-      <Adventures />
-      < Footer />
-    </>
-  );
+return (
+<> <NavBar /> <Hero /> <Stats /> <Destinations /> <Adventures /> <Footer />
+</>
+);
 }
 
 export default LandingPage;
