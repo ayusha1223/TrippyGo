@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import heroImage from "../../assets/images/everest.jpg";
 
 function Register() {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] =
     useState(false);
 
@@ -30,10 +32,44 @@ function Register() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(formData);
+    if (!formData.terms) {
+      alert("Please accept Terms & Conditions");
+      return;
+    }
+
+    if (
+      formData.password !==
+      formData.confirmPassword
+    ) {
+      alert("Passwords do not match");
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/auth/register",
+        {
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+        }
+      );
+
+     alert("Registration Successful!");
+
+navigate("/login");
+
+    } catch (error) {
+      console.log(error);
+
+      alert(
+        error.response?.data?.message ||
+        "Registration Failed"
+      );
+    }
   };
 
   return (
@@ -46,7 +82,6 @@ function Register() {
       <div className="w-full max-w-6xl h-[740px] rounded-xl overflow-hidden backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl flex">
 
         {/* LEFT */}
-
         <div className="w-1/2 bg-[#1A5F7A]/50 text-white p-12 flex flex-col justify-between">
 
           <div>
@@ -56,8 +91,7 @@ function Register() {
 
             <p className="text-lg text-white/90">
               Join a community of explorers
-              discovering Nepal's hidden
-              beauty.
+              discovering Nepal's hidden beauty.
             </p>
           </div>
 
@@ -69,8 +103,7 @@ function Register() {
               </h3>
 
               <p className="text-white/80 text-sm">
-                Handpicked places from all
-                over Nepal.
+                Handpicked places from all over Nepal.
               </p>
             </div>
 
@@ -80,8 +113,7 @@ function Register() {
               </h3>
 
               <p className="text-white/80 text-sm">
-                Build your perfect itinerary
-                instantly.
+                Build your perfect itinerary instantly.
               </p>
             </div>
 
@@ -94,7 +126,6 @@ function Register() {
         </div>
 
         {/* RIGHT */}
-
         <div className="w-1/2 bg-white p-12 overflow-y-auto">
 
           <div className="mb-10">
@@ -102,15 +133,6 @@ function Register() {
               Create your account
             </h2>
 
-            <p className="mt-2 text-gray-600">
-              Already have an account?{" "}
-              <Link
-                to="/login"
-                className="text-[#1A5F7A] font-semibold"
-              >
-                Login here
-              </Link>
-            </p>
           </div>
 
           <form
@@ -126,6 +148,7 @@ function Register() {
               <input
                 type="text"
                 name="name"
+                value={formData.name}
                 placeholder="Ayusha Thapa"
                 onChange={handleChange}
                 className="w-full mt-2 p-3 rounded-lg border bg-slate-50"
@@ -140,6 +163,7 @@ function Register() {
               <input
                 type="email"
                 name="email"
+                value={formData.email}
                 placeholder="ayusha@gmail.com"
                 onChange={handleChange}
                 className="w-full mt-2 p-3 rounded-lg border bg-slate-50"
@@ -154,6 +178,7 @@ function Register() {
                 </label>
 
                 <div className="relative">
+
                   <input
                     type={
                       showPassword
@@ -161,6 +186,7 @@ function Register() {
                         : "password"
                     }
                     name="password"
+                    value={formData.password}
                     onChange={handleChange}
                     className="w-full mt-2 p-3 rounded-lg border bg-slate-50"
                   />
@@ -176,6 +202,7 @@ function Register() {
                   >
                     👁
                   </button>
+
                 </div>
               </div>
 
@@ -185,6 +212,7 @@ function Register() {
                 </label>
 
                 <div className="relative">
+
                   <input
                     type={
                       showConfirmPassword
@@ -192,6 +220,7 @@ function Register() {
                         : "password"
                     }
                     name="confirmPassword"
+                    value={formData.confirmPassword}
                     onChange={handleChange}
                     className="w-full mt-2 p-3 rounded-lg border bg-slate-50"
                   />
@@ -207,6 +236,7 @@ function Register() {
                   >
                     👁
                   </button>
+
                 </div>
               </div>
 
@@ -222,45 +252,36 @@ function Register() {
               />
 
               <span className="text-sm">
-                I agree to Terms &
-                Conditions
+                I agree to Terms & Conditions
               </span>
 
             </div>
 
             <button
+              type="submit"
               className="w-full bg-[#1A5F7A] text-white py-4 rounded-lg font-semibold hover:bg-[#154b61]"
             >
               Create Account
             </button>
 
-            <div className="flex items-center gap-3 py-3">
-              <div className="flex-1 h-px bg-gray-300"></div>
-              <span className="text-xs text-gray-500">
-                OR CONTINUE WITH
-              </span>
-              <div className="flex-1 h-px bg-gray-300"></div>
-            </div>
+         </form>
 
-            <div className="grid grid-cols-2 gap-4">
+<div className="mt-8 text-center">
 
-              <button
-                type="button"
-                className="border rounded-lg py-3"
-              >
-                Google
-              </button>
+  <p className="text-gray-600">
 
-              <button
-                type="button"
-                className="border rounded-lg py-3"
-              >
-                Facebook
-              </button>
+    Already have an account?{" "}
 
-            </div>
+    <Link
+      to="/login"
+      className="text-[#1A5F7A] font-semibold hover:underline"
+    >
+      Login here
+    </Link>
 
-          </form>
+  </p>
+
+</div>
 
         </div>
 

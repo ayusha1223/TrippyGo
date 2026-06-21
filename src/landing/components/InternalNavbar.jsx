@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function InternalNavbar() {
+function InternalNavBar() {
 return ( <nav className="sticky top-0 w-full z-50 bg-white shadow-sm"> <div className="max-w-7xl mx-auto mt-4 px-8"> <div className="bg-white border border-gray-200 rounded-2xl px-8 py-4 flex items-center justify-between">
 
       {/* Logo */}
@@ -19,9 +19,9 @@ return ( <nav className="sticky top-0 w-full z-50 bg-white shadow-sm"> <div clas
           Maps
         </Link>
 
-        <Link to="/hotels" className="hover:text-orange-500 transition">
-          Hotels
-        </Link>
+        <Link to="/hotel-details" className="hover:text-orange-400">
+    Hotels
+  </Link>
 
         <Link to="/adventures" className="hover:text-orange-500 transition">
           Adventures
@@ -59,4 +59,4 @@ return ( <nav className="sticky top-0 w-full z-50 bg-white shadow-sm"> <div clas
 );
 }
 
-export default InternalNavbar;
+export default InternalNavBar;

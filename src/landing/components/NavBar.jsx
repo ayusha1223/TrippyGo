@@ -22,7 +22,7 @@ function NavBar() {
     Maps
   </Link>
 
-  <Link to="/hotels" className="hover:text-orange-400">
+  <Link to="/hotel-details" className="hover:text-orange-400">
     Hotels
   </Link>
 
