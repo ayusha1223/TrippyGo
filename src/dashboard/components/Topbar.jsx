@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   FaBell,
   FaSearch,
@@ -16,6 +17,7 @@ const categories = [
 
 export default function Topbar() {
   const [selected, setSelected] = useState("Mountain");
+  const navigate = useNavigate();
 
   return (
     <header className="sticky top-0 z-20 bg-white/80 backdrop-blur-lg border-b border-gray-200">
@@ -74,19 +76,24 @@ export default function Topbar() {
           {/* Profile */}
 
           <div
-            className="
-            bg-gray-100
-            rounded-xl
-            px-4
-            py-2
-            flex
-            items-center
-            gap-3
-            cursor-pointer
-            hover:bg-gray-200
-            transition
-            "
-          >
+  onClick={() => navigate("/profile")}
+  className="
+  bg-white
+  border
+  border-gray-200
+  rounded-2xl
+  px-4
+  py-2
+  flex
+  items-center
+  gap-3
+  cursor-pointer
+  hover:shadow-lg
+  hover:border-[#2563EB]
+  transition-all
+  duration-300
+  "
+>
             <img
               src="https://i.pravatar.cc/150?img=12"
               alt="profile"

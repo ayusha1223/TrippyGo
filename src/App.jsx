@@ -9,6 +9,7 @@ import Login from "./auth/pages/Login";
 import Register from "./auth/pages/Register";
 import ForgotPassword from "./auth/pages/ForgotPassword";
 import Dashboard from "./dashboard/pages/Dashboard";
+import Profile from "./profile/pages/Profile";
 
 function App() {
 return ( <BrowserRouter> <Routes>
@@ -23,6 +24,7 @@ return ( <BrowserRouter> <Routes>
     <Route path="/ai-guide" element={<AIGuide />} />
     {/* Authentication */}
     <Route path="/login" element={<Login />} />
+    <Route path="/profile" element={<Profile />} />
     <Route path="/register" element={<Register />} />
     <Route path="/forgot-password" element={<ForgotPassword />} />
     <Route path="/dashboard" element={<Dashboard />} />
