@@ -41,7 +41,7 @@ function Login() {
 
       alert("Login Successful!");
 
-      navigate("/");
+      navigate("/dashboard");
 
     } catch (error) {
       alert(

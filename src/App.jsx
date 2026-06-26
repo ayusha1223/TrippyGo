@@ -8,6 +8,7 @@ import Adventure from "./landing/pages/Adventures";
 import Login from "./auth/pages/Login";
 import Register from "./auth/pages/Register";
 import ForgotPassword from "./auth/pages/ForgotPassword";
+import Dashboard from "./dashboard/pages/Dashboard";
 
 function App() {
 return ( <BrowserRouter> <Routes>
@@ -24,6 +25,7 @@ return ( <BrowserRouter> <Routes>
     <Route path="/login" element={<Login />} />
     <Route path="/register" element={<Register />} />
     <Route path="/forgot-password" element={<ForgotPassword />} />
+    <Route path="/dashboard" element={<Dashboard />} />
 
   </Routes>
 </BrowserRouter>
