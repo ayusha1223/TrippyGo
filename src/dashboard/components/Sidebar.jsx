@@ -10,7 +10,6 @@ import {
   FaQuestionCircle,
   FaSignOutAlt,
 } from "react-icons/fa";
-
 import { Link, useLocation } from "react-router-dom";
 
 const menu = [
@@ -55,29 +54,29 @@ export default function Sidebar() {
   const location = useLocation();
 
   return (
-    <aside className="fixed left-0 top-0 h-screen w-64 bg-white border-r border-gray-200 flex flex-col">
+    <aside className="fixed left-0 top-0 h-screen w-60 bg-white border-r border-gray-200 flex flex-col">
 
       {/* Logo */}
 
-      <div className="h-24 flex items-center justify-center border-b">
+      <div className="h-20 border-b border-gray-200 flex items-center px-6">
 
-        <div className="flex items-center gap-3">
+        <div className="w-12 h-12 rounded-xl bg-[#2563EB] flex items-center justify-center flex-shrink-0 shadow-md">
 
-          <div className="w-12 h-12 rounded-xl bg-[#1A5F7A] text-white flex items-center justify-center text-2xl font-bold">
+          <span className="text-white text-2xl font-bold">
             T
-          </div>
+          </span>
 
-          <div>
+        </div>
 
-            <h1 className="text-2xl font-bold text-[#1A5F7A]">
-              TrippyGo
-            </h1>
+        <div className="ml-3">
 
-            <p className="text-xs text-gray-500">
-              Explore Nepal
-            </p>
+          <h1 className="text-3xl font-extrabold text-[#0F4C81] leading-none">
+            TrippyGo
+          </h1>
 
-          </div>
+          <p className="text-xs text-gray-500 mt-1">
+            Explore Nepal
+          </p>
 
         </div>
 
@@ -85,62 +84,68 @@ export default function Sidebar() {
 
       {/* Navigation */}
 
-      <nav className="flex-1 px-5 py-8">
+      <nav className="flex-1 overflow-y-auto px-5 py-6">
 
-        <p className="text-xs uppercase text-gray-400 font-semibold mb-5">
+        <p className="text-xs uppercase tracking-widest text-gray-400 mb-4 font-semibold">
           Menu
         </p>
 
         <div className="space-y-2">
 
           {menu.map((item) => (
+
             <Link
               key={item.title}
               to={item.path}
-              className={`flex items-center gap-4 rounded-xl px-4 py-3 transition-all duration-300
+              className={`flex items-center gap-4 rounded-xl px-4 py-3 font-medium transition-all duration-300
 
-              ${
-                location.pathname === item.path
-                  ? "bg-[#1A5F7A] text-white shadow-lg"
-                  : "text-gray-600 hover:bg-gray-100"
-              }
+                ${
+                  location.pathname === item.path
+                    ? "bg-[#0F4C81] text-white shadow-lg"
+                    : "text-gray-600 hover:bg-[#EFF6FF] hover:text-[#0F4C81]"
+                }
               `}
             >
-              <span className="text-lg">{item.icon}</span>
 
-              <span className="font-medium">
+              <span className="text-lg">
+                {item.icon}
+              </span>
+
+              <span>
                 {item.title}
               </span>
+
             </Link>
+
           ))}
 
         </div>
 
-        {/* AI Button */}
+        {/* AI Assistant */}
 
-        <div className="mt-10 rounded-2xl bg-[#1A5F7A] text-white p-5">
+        <div className="mt-8 rounded-2xl bg-gradient-to-r from-[#0F4C81] to-[#2563EB] p-4 text-white shadow-lg">
 
-          <div className="flex items-center gap-3 mb-3">
+          <div className="flex items-center gap-3">
 
-            <div className="w-10 h-10 rounded-full bg-white text-[#1A5F7A] flex items-center justify-center">
+            <div className="w-11 h-11 rounded-full bg-white flex items-center justify-center text-[#2563EB]">
 
-              <FaRobot />
+              <FaRobot size={18} />
 
             </div>
 
-            <h3 className="font-semibold">
-              AI Planner
-            </h3>
+            <div>
+
+              <h3 className="font-semibold">
+                AI Assistant
+              </h3>
+
+              <p className="text-xs text-white/80">
+                Plan your next trip
+              </p>
+
+            </div>
 
           </div>
-
-          <p className="text-sm text-white/80 mb-4">
-            Generate personalized trips using AI.
-          </p>
-
-          <button className="w-full bg-white text-[#1A5F7A] rounded-xl py-2 font-semibold hover:bg-gray-100 transition">
-            Open Planner
-          </button>
 
         </div>
 
@@ -148,21 +153,21 @@ export default function Sidebar() {
 
       {/* Bottom */}
 
-      <div className="border-t p-5 space-y-3">
+      <div className="mt-auto border-t border-gray-200 p-5 space-y-2">
 
-        <button className="w-full flex items-center gap-3 text-gray-600 hover:text-[#1A5F7A]">
+        <button className="w-full flex items-center gap-3 rounded-lg px-3 py-3 text-gray-600 hover:bg-gray-100 transition">
 
           <FaQuestionCircle />
 
-          Support
+          <span>Support</span>
 
         </button>
 
-        <button className="w-full flex items-center gap-3 text-red-500 hover:text-red-700">
+        <button className="w-full flex items-center gap-3 rounded-lg px-3 py-3 text-red-500 hover:bg-red-50 transition">
 
           <FaSignOutAlt />
 
-          Log Out
+          <span>Log Out</span>
 
         </button>
 

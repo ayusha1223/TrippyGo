@@ -2,8 +2,6 @@ import { FaArrowRight } from "react-icons/fa";
 import DestinationCard from "./DestinationCard";
 import destinations from "../data/destinations";
 
-
-
 export default function DestinationGrid() {
   return (
     <section>
