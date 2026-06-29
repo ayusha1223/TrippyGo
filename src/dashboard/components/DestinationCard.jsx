@@ -1,14 +1,19 @@
 import { FaHeart, FaStar } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 export default function DestinationCard({
+  id,
   image,
   name,
   rating,
   description,
   tags,
 }) {
+  const navigate = useNavigate();
+
   return (
     <div
+      onClick={() => navigate(`/destination/${id}`)}
       className="
       bg-white
       rounded-2xl
@@ -18,6 +23,7 @@ export default function DestinationCard({
       hover:-translate-y-2
       transition-all
       duration-300
+      cursor-pointer
       "
     >
       {/* Image */}
@@ -31,6 +37,7 @@ export default function DestinationCard({
         />
 
         <button
+          onClick={(e) => e.stopPropagation()}
           className="
           absolute
           top-4

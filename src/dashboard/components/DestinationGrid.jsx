@@ -54,15 +54,16 @@ export default function DestinationGrid() {
       >
         {destinations.map((place) => (
 
-          <DestinationCard
-            key={place.id}
-            image={place.image}
-            name={place.name}
-            rating={place.rating}
-            description={place.description}
-            tags={place.tags}
-          />
-
+         
+<DestinationCard
+    key={place.id}
+    id={place.id}
+    image={place.image}
+    name={place.name}
+    rating={place.rating}
+    description={place.description}
+    tags={place.tags}
+/>
         ))}
       </div>
 

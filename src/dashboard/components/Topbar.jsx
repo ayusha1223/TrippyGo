@@ -5,6 +5,7 @@ import {
   FaSearch,
   FaChevronDown,
 } from "react-icons/fa";
+import destinations from "../data/destinations";
 
 const categories = [
   "Mountain",
@@ -17,6 +18,8 @@ const categories = [
 
 export default function Topbar() {
   const [selected, setSelected] = useState("Mountain");
+  const [search, setSearch] = useState("");
+const [results, setResults] = useState([]);
   const navigate = useNavigate();
 
   return (
@@ -36,21 +39,69 @@ export default function Topbar() {
               className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-400"
             />
 
-            <input
-              type="text"
-              placeholder="Search destinations..."
-              className="
-              w-full
-              rounded-xl
-              bg-gray-100
-              py-4
-              pl-14
-              pr-5
-              outline-none
-              focus:ring-2
-              focus:ring-[#1A5F7A]
-              "
-            />
+        <input
+  type="text"
+  placeholder="Search destinations..."
+  value={search}
+  onChange={(e) => {
+    const value = e.target.value;
+    setSearch(value);
+
+    if (value.trim() === "") {
+      setResults([]);
+      return;
+    }
+
+    const filtered = destinations.filter((destination) =>
+      destination.name.toLowerCase().includes(value.toLowerCase())
+    );
+
+    setResults(filtered);
+  }}
+  className="
+  w-full
+  rounded-xl
+  bg-gray-100
+  py-4
+  pl-14
+  pr-5
+  outline-none
+  focus:ring-2
+  focus:ring-[#1A5F7A]
+  "
+/>
+
+{results.length > 0 && (
+  <div className="absolute left-0 right-0 mt-2 bg-white rounded-xl shadow-xl border z-50 max-h-80 overflow-y-auto">
+
+    {results.map((destination) => (
+
+      <div
+        key={destination.id}
+        className="flex items-center gap-4 p-4 hover:bg-gray-100 cursor-pointer"
+      >
+        <img
+          src={destination.image}
+          alt={destination.name}
+          className="w-14 h-14 rounded-lg object-cover"
+        />
+
+        <div>
+          <h3 className="font-semibold">
+            {destination.name}
+          </h3>
+
+          <p className="text-sm text-gray-500">
+            {destination.description}
+          </p>
+        </div>
+
+      </div>
+
+    ))}
+
+  </div>
+)}
 
           </div>
 
