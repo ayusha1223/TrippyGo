@@ -25,9 +25,7 @@ export default function Dashboard() {
 
           <StatsCards />
 
-          <DestinationGrid />
-
-          <DestinationCard />
+          <DestinationGrid limit={8} />
 
           <AIPlannerCard />
 

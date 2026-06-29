@@ -10,6 +10,7 @@ import Register from "./auth/pages/Register";
 import ForgotPassword from "./auth/pages/ForgotPassword";
 import Dashboard from "./dashboard/pages/Dashboard";
 import Profile from "./profile/pages/Profile";
+import Destinations from "./destination/pages/Destinations";
 import DestinationDetails from "./destination/pages/DestinationDetails";
 function App() {
 return ( <BrowserRouter> <Routes>
@@ -28,7 +29,12 @@ return ( <BrowserRouter> <Routes>
     <Route path="/register" element={<Register />} />
     <Route path="/forgot-password" element={<ForgotPassword />} />
     <Route path="/dashboard" element={<Dashboard />} />
-    <Route
+  <Route
+    path="/destinations"
+    element={<Destinations />}
+/>
+
+<Route
     path="/destination/:id"
     element={<DestinationDetails />}
 />

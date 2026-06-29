@@ -5,7 +5,7 @@ import {
   FaSearch,
   FaChevronDown,
 } from "react-icons/fa";
-import destinations from "../data/destinations";
+import destinations from "../data/destination";
 
 const categories = [
   "Mountain",
