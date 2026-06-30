@@ -11,17 +11,6 @@ export async function getItineraries() {
   return await response.json();
 }
 
-// Get one itinerary
-export async function getItineraryById(id) {
-  const response = await fetch(`${API}/${id}`);
-
-  if (!response.ok) {
-    throw new Error("Failed to fetch itinerary");
-  }
-
-  return await response.json();
-}
-
 // Save itinerary
 export async function saveItinerary(itinerary) {
   const response = await fetch(API, {
