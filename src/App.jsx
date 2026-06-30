@@ -12,6 +12,8 @@ import Dashboard from "./dashboard/pages/Dashboard";
 import Profile from "./profile/pages/Profile";
 import Destinations from "./destination/pages/Destinations";
 import DestinationDetails from "./destination/pages/DestinationDetails";
+import AIAssistant from "./ai/pages/AIAssistant";
+import MyItineraries from "./itinerary/pages/MyItineraries";
 function App() {
 return ( <BrowserRouter> <Routes>
 
@@ -32,6 +34,14 @@ return ( <BrowserRouter> <Routes>
   <Route
     path="/destinations"
     element={<Destinations />}
+/>
+<Route
+    path="/ai-assistant"
+    element={<AIAssistant />}
+/>
+<Route
+    path="/itinerary"
+    element={<MyItineraries />}
 />
 
 <Route

@@ -123,31 +123,55 @@ export default function Sidebar() {
 
         {/* AI Assistant */}
 
-        <div className="mt-8 rounded-2xl bg-gradient-to-r from-[#0F4C81] to-[#2563EB] p-4 text-white shadow-lg">
+       <Link
+    to="/ai-assistant"
+    className="
+        mt-8
+        block
+        rounded-2xl
+        bg-gradient-to-r
+        from-[#0F4C81]
+        to-[#2563EB]
+        p-4
+        text-white
+        shadow-lg
+        hover:scale-[1.02]
+        transition
+    "
+>
 
-          <div className="flex items-center gap-3">
+    <div className="flex items-center gap-3">
 
-            <div className="w-11 h-11 rounded-full bg-white flex items-center justify-center text-[#2563EB]">
+        <div
+            className="
+            w-12
+            h-12
+            rounded-full
+            bg-white
+            flex
+            items-center
+            justify-center
+            text-[#2563EB]
+            "
+        >
+            <FaRobot size={18} />
+        </div>
 
-              <FaRobot size={18} />
+        <div>
 
-            </div>
-
-            <div>
-
-              <h3 className="font-semibold">
+            <h3 className="font-semibold">
                 AI Assistant
-              </h3>
+            </h3>
 
-              <p className="text-xs text-white/80">
-                Plan your next trip
-              </p>
-
-            </div>
-
-          </div>
+            <p className="text-sm text-white/80">
+                Chat with TrippyGo AI
+            </p>
 
         </div>
+
+    </div>
+
+</Link>
 
       </nav>
 
