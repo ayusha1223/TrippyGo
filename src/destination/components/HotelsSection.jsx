@@ -134,7 +134,7 @@ export default function HotelsSection({ hotels }) {
                     transition
                   "
                 >
-                  Book
+                  Save
 
                   <FaArrowRight />
 

@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
+import { getProfile } from "../../services/userService";
 
 import DestinationCard from "./DestinationCard";
 import { getDestinations } from "../../services/destinationService";
@@ -8,18 +9,29 @@ import { getDestinations } from "../../services/destinationService";
 export default function DestinationGrid({ limit }) {
   const [destinations, setDestinations] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [favorites, setFavorites] = useState([]);
+const [saved, setSaved] = useState([]);
 
   useEffect(() => {
-    async function loadDestinations() {
-      try {
-        const data = await getDestinations();
-        setDestinations(data);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    }
+   async function loadDestinations() {
+  try {
+    const [destinationData, profile] = await Promise.all([
+      getDestinations(),
+      getProfile(),
+    ]);
+
+    setDestinations(destinationData);
+
+    setFavorites(profile.favoriteDestinations || []);
+
+    setSaved(profile.savedDestinations || []);
+
+  } catch (error) {
+    console.error(error);
+  } finally {
+    setLoading(false);
+  }
+}
 
     loadDestinations();
   }, []);
@@ -58,8 +70,6 @@ export default function DestinationGrid({ limit }) {
           transition-all
           "
         >
-          View All
-          <FaArrowRight />
         </button>
 
       </div>
@@ -74,15 +84,17 @@ export default function DestinationGrid({ limit }) {
         "
       >
         {(limit ? destinations.slice(0, limit) : destinations).map((place) => (
-          <DestinationCard
-            key={place._id}
-            id={place._id}
-            image={place.heroImage}
-            name={place.name}
-            rating={place.rating}
-            description={place.description}
-            tags={place.tags}
-          />
+         <DestinationCard
+    key={place._id}
+    id={place._id}
+    image={place.heroImage}
+    name={place.name}
+    rating={place.rating}
+    description={place.description}
+    tags={place.tags}
+    favorites={favorites}
+    saved={saved}
+/>
         ))}
       </div>
 
