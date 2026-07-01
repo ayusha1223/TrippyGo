@@ -10,10 +10,8 @@ import {
 } from "react-icons/fa";
 
 import {
-  addFavorite,
-  removeFavorite,
-  saveDestination,
-  removeSavedDestination,
+  toggleFavorite,
+  toggleSave,
 } from "../../services/userService";
 
 export default function DestinationCard({
@@ -23,33 +21,33 @@ export default function DestinationCard({
   rating,
   description,
   tags,
-  favorites,
-  saved,
+  favorites = [],
+  saved = [],
 }) {
   const navigate = useNavigate();
-  const [isFavorite, setIsFavorite] = useState(
-  favorites?.includes(id)
-);
 
-const [isSaved, setIsSaved] = useState(
-  saved?.includes(id)
-);
-useEffect(() => {
-  setIsFavorite(favorites?.includes(id));
-  setIsSaved(saved?.includes(id));
-}, [favorites, saved, id]);
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
+
+  useEffect(() => {
+    setIsFavorite(favorites.includes(id));
+    setIsSaved(saved.includes(id));
+  }, [favorites, saved, id]);
 
   async function handleFavorite(e) {
     e.stopPropagation();
+    
 
     try {
-      if (isFavorite) {
-  await removeFavorite(id);
-  setIsFavorite(false);
-} else {
-  await addFavorite(id);
-  setIsFavorite(true);
-}
+      await toggleFavorite({
+        destination: id,
+        type: "destination",
+        itemId: id,
+        title: name,
+        image,
+      });
+
+      setIsFavorite((prev) => !prev);
     } catch (error) {
       console.error(error);
       alert("Failed to update favorite.");
@@ -59,17 +57,21 @@ useEffect(() => {
   async function handleSave(e) {
     e.stopPropagation();
 
+    console.log("SAVE CLICKED");
+
     try {
-      if (isSaved) {
-        await removeSavedDestination(id);
-        setIsSaved(false);
-      } else {
-        await saveDestination(id);
-        setIsSaved(true);
-      }
+      await toggleSave({
+        destination: id,
+        type: "destination",
+        itemId: id,
+        title: name,
+        image,
+      });
+
+      setIsSaved((prev) => !prev);
     } catch (error) {
       console.error(error);
-      alert("Failed to save destination.");
+      alert("Failed to update saved item.");
     }
   }
 
@@ -97,8 +99,6 @@ useEffect(() => {
           alt={name}
           className="w-full h-full object-cover"
         />
-
-        {/* Favorite + Save */}
 
         <div className="absolute top-4 right-4 flex gap-3">
 
@@ -199,7 +199,6 @@ useEffect(() => {
         <div className="flex flex-wrap gap-2 mt-5">
 
           {(tags || []).map((tag) => (
-
             <span
               key={tag}
               className="
@@ -214,7 +213,6 @@ useEffect(() => {
             >
               {tag}
             </span>
-
           ))}
 
         </div>

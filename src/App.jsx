@@ -14,6 +14,7 @@ import Destinations from "./destination/pages/Destinations";
 import DestinationDetails from "./destination/pages/DestinationDetails";
 import AIAssistant from "./ai/pages/AIAssistant";
 import MyItineraries from "./itinerary/pages/MyItineraries";
+import Saved from "./saved/pages/Saved";
 function App() {
 return ( <BrowserRouter> <Routes>
 
@@ -27,6 +28,7 @@ return ( <BrowserRouter> <Routes>
     <Route path="/ai-guide" element={<AIGuide />} />
     {/* Authentication */}
     <Route path="/login" element={<Login />} />
+    <Route path="/saved" element={<Saved />} />
     <Route path="/profile" element={<Profile />} />
     <Route path="/register" element={<Register />} />
     <Route path="/forgot-password" element={<ForgotPassword />} />
