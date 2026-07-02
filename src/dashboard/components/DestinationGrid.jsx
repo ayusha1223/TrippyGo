@@ -23,6 +23,7 @@ export default function DestinationGrid({
         ]);
 
         setDestinations(destinationData);
+        console.log(destinationData);
 
         setFavorites(profile.favoriteDestinations || []);
 
@@ -73,6 +74,8 @@ export default function DestinationGrid({
   const displayedDestinations = limit
     ? filteredDestinations.slice(0, limit)
     : filteredDestinations;
+
+    
 
   return (
     <section>

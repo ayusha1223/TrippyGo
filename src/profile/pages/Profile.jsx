@@ -1,211 +1,32 @@
-import {
-  FaCamera,
-  FaEnvelope,
-  FaLock,
-  FaPhone,
-  FaSave,
-  FaUser,
-} from "react-icons/fa";
-
+import Sidebar from "../../dashboard/components/Sidebar";
+import Topbar from "../../dashboard/components/Topbar";
+import DashboardFooter from "../../dashboard/components/DashboardFooter";
+import ProfileOverview from "../components/ProfileOverview";
 export default function Profile() {
   return (
-    <div className="min-h-screen bg-[#F6F8FC] p-10">
+    <div className="min-h-screen bg-[#FCF9F8] flex">
 
-      <h1 className="text-4xl font-bold text-[#0F4C81] mb-8">
-        My Profile
-      </h1>
+      <Sidebar />
 
-      <div className="grid lg:grid-cols-3 gap-8">
+      <div className="flex-1 ml-64 flex flex-col min-h-screen">
 
-        {/* LEFT */}
+        <Topbar />
 
-        <div className="bg-white rounded-3xl shadow-lg p-8 h-fit">
+        <main className="flex-1 px-10 py-8">
 
-          <div className="flex flex-col items-center">
+          <h1 className="text-5xl font-bold text-[#1A5F7A]">
+            My Profile
+          </h1>
 
-            <img
-              src="https://i.pravatar.cc/200?img=12"
-              alt="profile"
-              className="w-40 h-40 rounded-full object-cover border-4 border-blue-500"
-            />
+         <div className="space-y-8">
 
-            <button
-              className="
-              mt-5
-              bg-[#0F4C81]
-              text-white
-              px-5
-              py-3
-              rounded-xl
-              flex
-              items-center
-              gap-2
-              hover:bg-blue-700
-              "
-            >
-              <FaCamera />
+  <ProfileOverview />
 
-              Change Photo
-            </button>
+</div>
 
-            <h2 className="text-2xl font-bold mt-8">
-              Aayush Thapa
-            </h2>
+        </main>
 
-            <p className="text-gray-500">
-              Explorer Member
-            </p>
-
-          </div>
-
-        </div>
-
-        {/* RIGHT */}
-
-        <div className="lg:col-span-2 space-y-8">
-
-          {/* Personal Info */}
-
-          <div className="bg-white rounded-3xl shadow-lg p-8">
-
-            <h2 className="text-2xl font-bold mb-8">
-              Personal Information
-            </h2>
-
-            <div className="grid md:grid-cols-2 gap-6">
-
-              <div>
-
-                <label className="font-semibold">
-                  Full Name
-                </label>
-
-                <div className="relative mt-2">
-
-                  <FaUser className="absolute left-4 top-4 text-gray-400" />
-
-                  <input
-                    defaultValue="Aayush Thapa"
-                    className="w-full border rounded-xl pl-12 py-4"
-                  />
-
-                </div>
-
-              </div>
-
-              <div>
-
-                <label className="font-semibold">
-                  Email
-                </label>
-
-                <div className="relative mt-2">
-
-                  <FaEnvelope className="absolute left-4 top-4 text-gray-400" />
-
-                  <input
-                    defaultValue="aayush@email.com"
-                    className="w-full border rounded-xl pl-12 py-4"
-                  />
-
-                </div>
-
-              </div>
-
-              <div>
-
-                <label className="font-semibold">
-                  Phone
-                </label>
-
-                <div className="relative mt-2">
-
-                  <FaPhone className="absolute left-4 top-4 text-gray-400" />
-
-                  <input
-                    defaultValue="+61 412345678"
-                    className="w-full border rounded-xl pl-12 py-4"
-                  />
-
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-
-          {/* Password */}
-
-          <div className="bg-white rounded-3xl shadow-lg p-8">
-
-            <h2 className="text-2xl font-bold mb-8">
-              Change Password
-            </h2>
-
-            <div className="space-y-5">
-
-              <div className="relative">
-
-                <FaLock className="absolute left-4 top-4 text-gray-400" />
-
-                <input
-                  type="password"
-                  placeholder="Current Password"
-                  className="w-full border rounded-xl pl-12 py-4"
-                />
-
-              </div>
-
-              <div className="relative">
-
-                <FaLock className="absolute left-4 top-4 text-gray-400" />
-
-                <input
-                  type="password"
-                  placeholder="New Password"
-                  className="w-full border rounded-xl pl-12 py-4"
-                />
-
-              </div>
-
-              <div className="relative">
-
-                <FaLock className="absolute left-4 top-4 text-gray-400" />
-
-                <input
-                  type="password"
-                  placeholder="Confirm Password"
-                  className="w-full border rounded-xl pl-12 py-4"
-                />
-
-              </div>
-
-            </div>
-
-          </div>
-
-          {/* Save */}
-
-          <button
-            className="
-            bg-[#0F4C81]
-            text-white
-            px-8
-            py-4
-            rounded-xl
-            flex
-            items-center
-            gap-3
-            hover:bg-blue-700
-            "
-          >
-            <FaSave />
-
-            Save Changes
-          </button>
-
-        </div>
+        <DashboardFooter />
 
       </div>
 

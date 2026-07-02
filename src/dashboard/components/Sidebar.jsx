@@ -15,37 +15,37 @@ import { useTranslation } from "react-i18next";
 
 const menu = [
  {
-  title: t("dashboard"),
+  title: ("Dashboard"),
     icon: <FaHome />,
     path: "/dashboard",
   },
   {
-    title: t("destinations"),
+    title: ("Destinations"),
     icon: <FaMountain />,
     path: "/destinations",
   },
   {
-  title: t("explorer"),
+  title: ("Explorer"),
   icon: <FaHiking />,
   path: "/explorer",
 },
   {
-    title: t("saved-places"),
+    title: ("Saved Places"),
     icon: <FaBookmark />,
     path: "/saved",
   },
   {
-    title: t("favorites"),
+    title: ("Favorites"),
     icon: <FaHeart />,
     path: "/favorites",
   },
   {
-    title: t("my-itineraries"),
+    title: ("My Itineraries"),
     icon: <FaMapMarkedAlt />,
     path: "/itinerary",
   },
   {
-    title: t("settings"),
+    title: ("Settings"),
     icon: <FaCog />,
     path: "/settings",
   },
