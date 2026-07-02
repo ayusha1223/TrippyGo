@@ -2,6 +2,7 @@ import Sidebar from "../../dashboard/components/Sidebar";
 import Topbar from "../../dashboard/components/Topbar";
 import DashboardFooter from "../../dashboard/components/DashboardFooter";
 import ProfileOverview from "../components/ProfileOverview";
+import PersonalInformationCard from "../components/PersonalInformationCard";
 export default function Profile() {
   return (
     <div className="min-h-screen bg-[#FCF9F8] flex">
@@ -21,6 +22,8 @@ export default function Profile() {
          <div className="space-y-8">
 
   <ProfileOverview />
+
+  <PersonalInformationCard />
 
 </div>
 

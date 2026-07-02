@@ -1,7 +1,57 @@
-import { FaCamera, FaCheckCircle, FaMapMarkerAlt } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import {
+  FaCamera,
+  FaCheckCircle,
+  FaMapMarkerAlt,
+} from "react-icons/fa";
+
+import { getProfile } from "../../services/userService";
+import { getItineraries } from "../../itinerary/services/itineraryService";
 
 export default function ProfileOverview() {
+
+  const [profile, setProfile] = useState(null);
+  const [itineraryCount, setItineraryCount] = useState(0);
+
+  useEffect(() => {
+
+    async function loadProfile() {
+
+      try {
+
+        const [user, itineraries] = await Promise.all([
+          getProfile(),
+          getItineraries(),
+        ]);
+
+        setProfile(user);
+
+        setItineraryCount(itineraries.length);
+
+      } catch (error) {
+
+        console.error(error);
+
+      }
+
+    }
+
+    loadProfile();
+
+  }, []);
+
+  if (!profile) {
+
+    return (
+      <div className="bg-white rounded-3xl shadow-lg p-10">
+        Loading Profile...
+      </div>
+    );
+
+  }
+
   return (
+
     <div className="bg-white rounded-3xl shadow-lg p-8">
 
       <div className="flex flex-col lg:flex-row items-center gap-8">
@@ -11,7 +61,10 @@ export default function ProfileOverview() {
         <div className="relative">
 
           <img
-            src="https://i.pravatar.cc/250?img=12"
+            src={
+              profile.profileImage ||
+              "https://i.pravatar.cc/250?img=12"
+            }
             alt="Profile"
             className="w-44 h-44 rounded-full object-cover border-4 border-[#2563EB]"
           />
@@ -30,8 +83,6 @@ export default function ProfileOverview() {
               items-center
               justify-center
               shadow-lg
-              hover:scale-105
-              transition
             "
           >
             <FaCamera />
@@ -39,14 +90,16 @@ export default function ProfileOverview() {
 
         </div>
 
-        {/* User Info */}
+        {/* User */}
 
         <div className="flex-1">
 
           <div className="flex items-center gap-3">
 
             <h2 className="text-4xl font-bold text-[#1A5F7A]">
-              Aayush Thapa
+
+              {profile.name}
+
             </h2>
 
             <FaCheckCircle className="text-green-500 text-2xl" />
@@ -54,14 +107,20 @@ export default function ProfileOverview() {
           </div>
 
           <p className="text-gray-500 mt-2">
+
             Explorer Member
+
           </p>
 
           <div className="flex items-center gap-2 mt-4 text-gray-600">
 
             <FaMapMarkerAlt />
 
-            <span>Perth, Australia</span>
+            <span>
+
+              {profile.location || "Location not set"}
+
+            </span>
 
           </div>
 
@@ -70,11 +129,15 @@ export default function ProfileOverview() {
             <div>
 
               <h3 className="text-3xl font-bold text-[#1A5F7A]">
-                12
+
+                {profile.savedDestinations?.length || 0}
+
               </h3>
 
               <p className="text-gray-500">
+
                 Saved Places
+
               </p>
 
             </div>
@@ -82,11 +145,15 @@ export default function ProfileOverview() {
             <div>
 
               <h3 className="text-3xl font-bold text-[#1A5F7A]">
-                24
+
+                {profile.favoriteDestinations?.length || 0}
+
               </h3>
 
               <p className="text-gray-500">
+
                 Favorites
+
               </p>
 
             </div>
@@ -94,11 +161,15 @@ export default function ProfileOverview() {
             <div>
 
               <h3 className="text-3xl font-bold text-[#1A5F7A]">
-                5
+
+                {itineraryCount}
+
               </h3>
 
               <p className="text-gray-500">
+
                 Itineraries
+
               </p>
 
             </div>
@@ -110,5 +181,7 @@ export default function ProfileOverview() {
       </div>
 
     </div>
+
   );
+
 }
