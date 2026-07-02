@@ -5,7 +5,10 @@ import {
   FaMapMarkerAlt,
 } from "react-icons/fa";
 
-import { getProfile } from "../../services/userService";
+import {
+  getProfile,
+  uploadProfileImage,
+} from "../../services/userService";
 import { getItineraries } from "../../itinerary/services/itineraryService";
 
 export default function ProfileOverview() {
@@ -15,14 +18,37 @@ export default function ProfileOverview() {
   const fileInputRef = useRef(null);
 const [previewImage, setPreviewImage] = useState("");
 
- function handleImageSelect(event) {
+ async function handleImageSelect(event) {
+
   const file = event.target.files[0];
 
   if (!file) return;
 
-  const imageUrl = URL.createObjectURL(file);
+  // Show preview immediately
+  const preview = URL.createObjectURL(file);
+  setPreviewImage(preview);
 
-  setPreviewImage(imageUrl);
+  try {
+
+    const result = await uploadProfileImage(file);
+
+    setProfile((prev) => ({
+      ...prev,
+      profileImage: result.profileImage,
+    }));
+
+    // Remove temporary preview and use the saved URL
+    setPreviewImage("");
+
+    alert("Profile image updated successfully.");
+
+  } catch (error) {
+
+    console.error(error);
+
+    alert("Failed to upload profile image.");
+  }
+
 }
 
   useEffect(() => {
