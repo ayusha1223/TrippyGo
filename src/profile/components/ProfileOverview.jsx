@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   FaCamera,
   FaCheckCircle,
@@ -12,9 +12,21 @@ export default function ProfileOverview() {
 
   const [profile, setProfile] = useState(null);
   const [itineraryCount, setItineraryCount] = useState(0);
+  const fileInputRef = useRef(null);
+const [previewImage, setPreviewImage] = useState("");
+
+ function handleImageSelect(event) {
+  const file = event.target.files[0];
+
+  if (!file) return;
+
+  const imageUrl = URL.createObjectURL(file);
+
+  setPreviewImage(imageUrl);
+}
 
   useEffect(() => {
-
+   
     async function loadProfile() {
 
       try {
@@ -62,31 +74,43 @@ export default function ProfileOverview() {
 
           <img
             src={
-              profile.profileImage ||
-              "https://i.pravatar.cc/250?img=12"
-            }
+  previewImage ||
+  profile.profileImage ||
+  "https://i.pravatar.cc/250?img=12"
+}
             alt="Profile"
             className="w-44 h-44 rounded-full object-cover border-4 border-[#2563EB]"
           />
 
           <button
-            className="
-              absolute
-              bottom-2
-              right-2
-              w-12
-              h-12
-              rounded-full
-              bg-[#2563EB]
-              text-white
-              flex
-              items-center
-              justify-center
-              shadow-lg
-            "
-          >
-            <FaCamera />
-          </button>
+  onClick={() => fileInputRef.current.click()}
+  className="
+    absolute
+    bottom-2
+    right-2
+    w-12
+    h-12
+    rounded-full
+    bg-[#2563EB]
+    text-white
+    flex
+    items-center
+    justify-center
+    shadow-lg
+    hover:scale-105
+    transition
+  "
+>
+  <FaCamera />
+</button>
+
+<input
+  ref={fileInputRef}
+  type="file"
+  accept="image/*"
+  hidden
+  onChange={handleImageSelect}
+/>
 
         </div>
 

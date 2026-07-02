@@ -13,9 +13,25 @@ function authHeaders() {
 
 /*
 |--------------------------------------------------------------------------
-| PROFILE
+| USER PROFILE
 |--------------------------------------------------------------------------
 */
+export async function deleteSavedItem(id) {
+  const response = await fetch(
+    `${ITEM_API}/${id}`,
+    {
+      method: "DELETE",
+      headers: authHeaders(),
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to delete item");
+  }
+
+  return await response.json();
+}
+
 
 export async function getProfile() {
   const response = await fetch(`${API}/profile`, {
@@ -28,6 +44,11 @@ export async function getProfile() {
 
   return await response.json();
 }
+/*
+|--------------------------------------------------------------------------
+| UPDATE PROFILE
+|--------------------------------------------------------------------------
+*/
 
 export async function updateProfile(profile) {
   const response = await fetch(`${API}/profile`, {
@@ -42,90 +63,77 @@ export async function updateProfile(profile) {
 
   return await response.json();
 }
+/*
+|--------------------------------------------------------------------------
+| UPLOAD PROFILE IMAGE
+|--------------------------------------------------------------------------
+*/
 
+export async function uploadProfileImage(file) {
+  const formData = new FormData();
+
+  formData.append("image", file);
+
+  const response = await fetch(`${API}/profile-image`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+    },
+    body: formData,
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to upload image");
+  }
+
+  return await response.json();
+}
 /*
 |--------------------------------------------------------------------------
 | FAVORITES
 |--------------------------------------------------------------------------
 */
 
-export async function getFavorites() {
-  const response = await fetch(`${API}/favorites`, {
+const ITEM_API = "http://localhost:5000/api/items";
+
+// Get all saved/favorite items
+export async function getSavedItems() {
+  const response = await fetch(ITEM_API, {
     headers: authHeaders(),
   });
 
   if (!response.ok) {
-    throw new Error("Failed to fetch favorites");
+    throw new Error("Failed to fetch saved items");
   }
 
   return await response.json();
 }
 
-export async function addFavorite(id) {
-  const response = await fetch(`${API}/favorites/${id}`, {
+// Toggle Favorite
+export async function toggleFavorite(data) {
+  const response = await fetch(`${ITEM_API}/favorite`, {
     method: "POST",
     headers: authHeaders(),
+    body: JSON.stringify(data),
   });
 
   if (!response.ok) {
-    throw new Error("Failed to add favorite");
+    throw new Error("Failed to update favorite");
   }
 
   return await response.json();
 }
 
-export async function removeFavorite(id) {
-  const response = await fetch(`${API}/favorites/${id}`, {
-    method: "DELETE",
-    headers: authHeaders(),
-  });
-
-  if (!response.ok) {
-    throw new Error("Failed to remove favorite");
-  }
-
-  return await response.json();
-}
-
-/*
-|--------------------------------------------------------------------------
-| SAVED DESTINATIONS
-|--------------------------------------------------------------------------
-*/
-
-export async function getSavedDestinations() {
-  const response = await fetch(`${API}/saved`, {
-    headers: authHeaders(),
-  });
-
-  if (!response.ok) {
-    throw new Error("Failed to fetch saved destinations");
-  }
-
-  return await response.json();
-}
-
-export async function saveDestination(id) {
-  const response = await fetch(`${API}/saved/${id}`, {
+// Toggle Save
+export async function toggleSave(data) {
+  const response = await fetch(`${ITEM_API}/save`, {
     method: "POST",
     headers: authHeaders(),
+    body: JSON.stringify(data),
   });
 
   if (!response.ok) {
-    throw new Error("Failed to save destination");
-  }
-
-  return await response.json();
-}
-
-export async function removeSavedDestination(id) {
-  const response = await fetch(`${API}/saved/${id}`, {
-    method: "DELETE",
-    headers: authHeaders(),
-  });
-
-  if (!response.ok) {
-    throw new Error("Failed to remove saved destination");
+    throw new Error("Failed to update save");
   }
 
   return await response.json();
