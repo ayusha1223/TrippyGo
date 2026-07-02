@@ -16,8 +16,10 @@ const categories = [
   "Food",
 ];
 
-export default function Topbar() {
-  const [selected, setSelected] = useState("Mountain");
+export default function Topbar({
+  category,
+  setCategory,
+}) {
   const [search, setSearch] = useState("");
 const [results, setResults] = useState([]);
   const navigate = useNavigate();
@@ -177,7 +179,7 @@ const [results, setResults] = useState([]);
 
             <button
               key={item}
-              onClick={() => setSelected(item)}
+              onClick={() => setCategory(item)}
               className={`
               whitespace-nowrap
               rounded-full
@@ -187,7 +189,7 @@ const [results, setResults] = useState([]);
               transition
 
               ${
-                selected === item
+                category === item
                   ? "bg-[#1A5F7A] text-white shadow"
                   : "bg-gray-100 hover:bg-gray-200 text-gray-600"
               }

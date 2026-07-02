@@ -11,46 +11,48 @@ import {
   FaSignOutAlt,
 } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const menu = [
-  {
-    title: "Dashboard",
+ {
+  title: t("dashboard"),
     icon: <FaHome />,
     path: "/dashboard",
   },
   {
-    title: "Destinations",
+    title: t("destinations"),
     icon: <FaMountain />,
     path: "/destinations",
   },
   {
-    title: "Adventures",
-    icon: <FaHiking />,
-    path: "/adventures",
-  },
+  title: t("explorer"),
+  icon: <FaHiking />,
+  path: "/explorer",
+},
   {
-    title: "Saved Places",
+    title: t("saved-places"),
     icon: <FaBookmark />,
     path: "/saved",
   },
   {
-    title: "Favorites",
+    title: t("favorites"),
     icon: <FaHeart />,
     path: "/favorites",
   },
   {
-    title: "My Itineraries",
+    title: t("my-itineraries"),
     icon: <FaMapMarkedAlt />,
     path: "/itinerary",
   },
   {
-    title: "Settings",
+    title: t("settings"),
     icon: <FaCog />,
     path: "/settings",
   },
 ];
 
 export default function Sidebar() {
+  const { t } = useTranslation();
   const location = useLocation();
 
   return (
@@ -183,7 +185,7 @@ export default function Sidebar() {
 
           <FaQuestionCircle />
 
-          <span>Support</span>
+          <span>{t("support")}</span>
 
         </button>
 
@@ -191,7 +193,7 @@ export default function Sidebar() {
 
           <FaSignOutAlt />
 
-          <span>Log Out</span>
+          <span>{t("logout")}</span>
 
         </button>
 

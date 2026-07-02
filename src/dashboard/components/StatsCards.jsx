@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 import {
   FaBookmark,
   FaHeart,
@@ -7,23 +9,46 @@ import {
 
 import StatCard from "./StatCard";
 
+import { getDashboardStats } from "../../services/dashboardService";
+
 export default function StatsCards() {
-  const stats = [
+  const [stats, setStats] = useState({
+    savedPlaces: 0,
+    favorites: 0,
+    itineraries: 0,
+  });
+
+  useEffect(() => {
+    async function loadStats() {
+      try {
+        const data = await getDashboardStats();
+
+        setStats(data);
+
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    loadStats();
+  }, []);
+
+  const cards = [
     {
       title: "Saved Places",
-      value: 12,
+      value: stats.savedPlaces,
       icon: <FaBookmark />,
       color: "bg-blue-100",
     },
     {
       title: "Favorites",
-      value: 24,
+      value: stats.favorites,
       icon: <FaHeart />,
       color: "bg-red-100",
     },
     {
       title: "My Itineraries",
-      value: 5,
+      value: stats.itineraries,
       icon: <FaMapMarkedAlt />,
       color: "bg-green-100",
     },
@@ -40,14 +65,16 @@ export default function StatsCards() {
 
       <div
         className="
-        grid
-        grid-cols-1
-        sm:grid-cols-2
-        xl:grid-cols-4
-        gap-6
+          grid
+          grid-cols-1
+          sm:grid-cols-2
+          xl:grid-cols-4
+          gap-6
         "
       >
-        {stats.map((item) => (
+
+        {cards.map((item) => (
+
           <StatCard
             key={item.title}
             icon={item.icon}
@@ -55,7 +82,9 @@ export default function StatsCards() {
             value={item.value}
             color={item.color}
           />
+
         ))}
+
       </div>
 
     </section>

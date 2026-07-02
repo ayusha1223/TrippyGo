@@ -1,8 +1,21 @@
 const API = "http://localhost:5000/api/itineraries";
 
+function getToken() {
+  return localStorage.getItem("token");
+}
+
+function authHeaders() {
+  return {
+    Authorization: `Bearer ${getToken()}`,
+    "Content-Type": "application/json",
+  };
+}
+
 // Get all itineraries
 export async function getItineraries() {
-  const response = await fetch(API);
+  const response = await fetch(API, {
+    headers: authHeaders(),
+  });
 
   if (!response.ok) {
     throw new Error("Failed to fetch itineraries");
@@ -15,9 +28,7 @@ export async function getItineraries() {
 export async function saveItinerary(itinerary) {
   const response = await fetch(API, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: authHeaders(),
     body: JSON.stringify(itinerary),
   });
 
@@ -32,6 +43,7 @@ export async function saveItinerary(itinerary) {
 export async function deleteItinerary(id) {
   const response = await fetch(`${API}/${id}`, {
     method: "DELETE",
+    headers: authHeaders(),
   });
 
   if (!response.ok) {

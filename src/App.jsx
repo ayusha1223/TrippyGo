@@ -4,7 +4,8 @@ import LandingPage from "./landing/pages/LandingPage";
 import Maps from "./landing/pages/Maps";
 import HotelDetails from "./landing/pages/HotelDetails";
 import  AIGuide from "./landing/pages/AIGuide";
-import Adventure from "./landing/pages/Adventures";
+import Adventure from "./landing/pages/Adventures";   // Landing page
+import Adventures from "./adventure/pages/Adventure"; // Dashboard Adventure Explorer
 import Login from "./auth/pages/Login";
 import Register from "./auth/pages/Register";
 import ForgotPassword from "./auth/pages/ForgotPassword";
@@ -16,6 +17,7 @@ import AIAssistant from "./ai/pages/AIAssistant";
 import MyItineraries from "./itinerary/pages/MyItineraries";
 import Saved from "./saved/pages/Saved";
 import Favorites from "./favorites/pages/Favorites";
+import Settings from "./settings/pages/Settings";
 function App() {
 return ( <BrowserRouter> <Routes>
 
@@ -35,6 +37,7 @@ return ( <BrowserRouter> <Routes>
     <Route path="/forgot-password" element={<ForgotPassword />} />
     <Route path="/dashboard" element={<Dashboard />} />
     <Route path="/favorites" element={<Favorites />} />
+    <Route path="/explorer" element={<Adventures />} />
   <Route
     path="/destinations"
     element={<Destinations />}
@@ -51,6 +54,10 @@ return ( <BrowserRouter> <Routes>
 <Route
     path="/destination/:id"
     element={<DestinationDetails />}
+/>
+<Route
+  path="/settings"
+  element={<Settings />}
 />
 
   </Routes>
