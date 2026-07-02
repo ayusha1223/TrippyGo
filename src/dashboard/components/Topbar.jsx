@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getProfile } from "../../services/userService";
 import {
   FaBell,
   FaSearch,
@@ -22,7 +23,21 @@ export default function Topbar({
 }) {
   const [search, setSearch] = useState("");
 const [results, setResults] = useState([]);
+const [profile, setProfile] = useState(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+  async function loadProfile() {
+    try {
+      const user = await getProfile();
+      setProfile(user);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  loadProfile();
+}, []);
 
   return (
     <header className="sticky top-0 z-20 bg-white/80 backdrop-blur-lg border-b border-gray-200">
@@ -148,22 +163,25 @@ const [results, setResults] = useState([]);
   "
 >
             <img
-              src="https://i.pravatar.cc/150?img=12"
-              alt="profile"
-              className="w-12 h-12 rounded-full object-cover"
-            />
+  src={
+    profile?.profileImage ||
+    "https://i.pravatar.cc/150?img=12"
+  }
+  alt="profile"
+  className="w-12 h-12 rounded-full object-cover"
+/>
 
-            <div>
+<div>
 
-              <h3 className="font-semibold text-[#1A5F7A]">
-                Aayush Thapa
-              </h3>
+  <h3 className="font-semibold text-[#1A5F7A]">
+    {profile?.name || "Loading..."}
+  </h3>
 
-              <p className="text-xs text-gray-500">
-                Explorer Member
-              </p>
+  <p className="text-xs text-gray-500">
+    Explorer Member
+  </p>
 
-            </div>
+</div>
 
             <FaChevronDown className="text-gray-500" />
 
