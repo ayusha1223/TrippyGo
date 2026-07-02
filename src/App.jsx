@@ -15,6 +15,7 @@ import DestinationDetails from "./destination/pages/DestinationDetails";
 import AIAssistant from "./ai/pages/AIAssistant";
 import MyItineraries from "./itinerary/pages/MyItineraries";
 import Saved from "./saved/pages/Saved";
+import Favorites from "./favorites/pages/Favorites";
 function App() {
 return ( <BrowserRouter> <Routes>
 
@@ -33,6 +34,7 @@ return ( <BrowserRouter> <Routes>
     <Route path="/register" element={<Register />} />
     <Route path="/forgot-password" element={<ForgotPassword />} />
     <Route path="/dashboard" element={<Dashboard />} />
+    <Route path="/favorites" element={<Favorites />} />
   <Route
     path="/destinations"
     element={<Destinations />}

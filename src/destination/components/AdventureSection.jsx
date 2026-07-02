@@ -1,10 +1,23 @@
-import { FaArrowRight } from "react-icons/fa";
+import { useState } from "react";
+import {
+  FaArrowRight,
+  FaHeart,
+  FaRegHeart,
+  FaBookmark,
+  FaRegBookmark,
+} from "react-icons/fa";
 
-export default function AdventureSection({ adventures }) {
+import {
+  toggleFavorite,
+  toggleSave,
+} from "../../services/userService";
+
+export default function AdventureSection({
+  adventures,
+  destinationId,
+}) {
   return (
     <section className="max-w-7xl mx-auto px-10 py-14">
-
-      {/* Heading */}
 
       <div className="flex justify-between items-center mb-8">
 
@@ -20,110 +33,164 @@ export default function AdventureSection({ adventures }) {
 
         </div>
 
-        <button className="text-[#1A5F7A] font-semibold">
-          View All
-        </button>
-
       </div>
-
-      {/* Cards */}
 
       <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8">
 
         {adventures.map((adventure, index) => (
 
-          <div
+          <AdventureCard
             key={index}
-            className="
-              bg-white
-              rounded-3xl
-              overflow-hidden
-              shadow-lg
-              hover:shadow-2xl
-              transition-all
-              duration-300
-            "
-          >
-
-            {/* Image */}
-
-            <div className="relative">
-
-              <img
-                src={
-                  adventure.image ||
-                  "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b"
-                }
-                alt={adventure.title}
-                className="w-full h-72 object-cover"
-              />
-
-              <span
-                className="
-                  absolute
-                  top-4
-                  left-4
-                  bg-[#1A5F7A]
-                  text-white
-                  px-4
-                  py-2
-                  rounded-full
-                  text-sm
-                "
-              >
-                Adventure
-              </span>
-
-            </div>
-
-            {/* Content */}
-
-            <div className="p-6">
-
-              <h3 className="text-2xl font-bold">
-                {adventure.title}
-              </h3>
-
-              <p className="text-gray-500 mt-3 leading-7">
-                {adventure.description}
-              </p>
-
-              <div className="flex justify-between items-center mt-6">
-
-                <span className="text-3xl font-bold text-[#1A5F7A]">
-                  ${adventure.price}
-                </span>
-
-                <button
-                  className="
-                    bg-[#1A5F7A]
-                    text-white
-                    px-5
-                    py-3
-                    rounded-xl
-                    flex
-                    items-center
-                    gap-2
-                    hover:bg-[#15485e]
-                    transition
-                  "
-                >
-                  Book Now
-
-                  <FaArrowRight />
-
-                </button>
-
-              </div>
-
-            </div>
-
-          </div>
+            adventure={adventure}
+            index={index}
+            destinationId={destinationId}
+          />
 
         ))}
 
       </div>
 
     </section>
+  );
+}
+
+function AdventureCard({
+  adventure,
+  index,
+  destinationId,
+}) {
+  const [favorite, setFavorite] = useState(false);
+  const [saved, setSaved] = useState(false);
+
+  async function handleFavorite() {
+    try {
+      await toggleFavorite({
+        destination: destinationId,
+        type: "adventure",
+        itemId: `${destinationId}-adventure-${index}`,
+        title: adventure.title,
+        image: adventure.image,
+      });
+
+      setFavorite(!favorite);
+
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  async function handleSave() {
+    try {
+      await toggleSave({
+        destination: destinationId,
+        type: "adventure",
+        itemId: `${destinationId}-adventure-${index}`,
+        title: adventure.title,
+        image: adventure.image,
+      });
+
+      setSaved(!saved);
+
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  return (
+
+    <div
+      className="
+        bg-white
+        rounded-3xl
+        overflow-hidden
+        shadow-lg
+        hover:shadow-2xl
+        transition-all
+      "
+    >
+
+      <div className="relative">
+
+        <img
+          src={
+            adventure.image ||
+            "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b"
+          }
+          alt={adventure.title}
+          className="w-full h-72 object-cover"
+        />
+
+        <span className="absolute top-4 left-4 bg-[#1A5F7A] text-white px-4 py-2 rounded-full text-sm">
+          Adventure
+        </span>
+
+        <div className="absolute top-4 right-4 flex gap-3">
+
+          <button
+            onClick={handleFavorite}
+            className="w-10 h-10 rounded-full bg-white shadow flex items-center justify-center"
+          >
+            {favorite ? (
+              <FaHeart className="text-red-500" />
+            ) : (
+              <FaRegHeart className="text-red-500" />
+            )}
+          </button>
+
+          <button
+            onClick={handleSave}
+            className="w-10 h-10 rounded-full bg-white shadow flex items-center justify-center"
+          >
+            {saved ? (
+              <FaBookmark className="text-[#1A5F7A]" />
+            ) : (
+              <FaRegBookmark className="text-[#1A5F7A]" />
+            )}
+          </button>
+
+        </div>
+
+      </div>
+
+      <div className="p-6">
+
+        <h3 className="text-2xl font-bold">
+          {adventure.title}
+        </h3>
+
+        <p className="text-gray-500 mt-3 leading-7">
+          {adventure.description}
+        </p>
+
+        <div className="flex justify-between items-center mt-6">
+
+          <span className="text-3xl font-bold text-[#1A5F7A]">
+            ${adventure.price}
+          </span>
+
+          <button
+            className="
+              bg-[#1A5F7A]
+              text-white
+              px-5
+              py-3
+              rounded-xl
+              flex
+              items-center
+              gap-2
+              hover:bg-[#15485e]
+              transition
+            "
+          >
+            Details
+            <FaArrowRight />
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
   );
 }

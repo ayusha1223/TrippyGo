@@ -77,23 +77,26 @@ export default function DestinationDetails() {
 
           {/* Things To Do */}
           <ThingsToDo
-            things={destination.thingsToDo}
-          />
+  things={destination.thingsToDo}
+  destinationId={destination._id}
+/>
 
           {/* Places */}
           <PlacesToVisit
-            places={destination.placesToVisit}
-          />
+  places={destination.placesToVisit}
+  destinationId={destination._id}
+/>
 
           {/* Adventure */}
           <AdventureSection
-            adventures={destination.adventures}
-          />
+  adventures={destination.adventures}
+  destinationId={destination._id}
+/>
 
-          {/* Hotels */}
-          <HotelsSection
-            hotels={destination.hotels}
-          />
+         <HotelsSection
+  hotels={destination.hotels}
+  destinationId={destination._id}
+/>
 
           {/* Restaurants */}
           {/* <RestaurantsSection
