@@ -18,6 +18,7 @@ import MyItineraries from "./itinerary/pages/MyItineraries";
 import Saved from "./saved/pages/Saved";
 import Favorites from "./favorites/pages/Favorites";
 import Settings from "./settings/pages/Settings";
+import AdminDashboard from "./admin/pages/AdminDashboard";
 function App() {
 return ( <BrowserRouter> <Routes>
 
@@ -38,6 +39,10 @@ return ( <BrowserRouter> <Routes>
     <Route path="/dashboard" element={<Dashboard />} />
     <Route path="/favorites" element={<Favorites />} />
     <Route path="/explorer" element={<Adventures />} />
+    <Route
+  path="/admin"
+  element={<AdminDashboard />}
+/>
   <Route
     path="/destinations"
     element={<Destinations />}
