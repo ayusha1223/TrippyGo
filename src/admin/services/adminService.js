@@ -215,6 +215,63 @@ export async function getItineraries() {
 }
 /*
 |--------------------------------------------------------------------------
+| DELETE ITINERARY
+|--------------------------------------------------------------------------
+*/
+
+export async function deleteItinerary(id) {
+
+  const response = await fetch(
+    `${API}/itineraries/${id}`,
+    {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${getToken()}`,
+      },
+    }
+  );
+
+  if (!response.ok) {
+
+    const error = await response.json();
+
+    throw new Error(error.message);
+
+  }
+
+  return await response.json();
+
+}
+/*
+|--------------------------------------------------------------------------
+| GET SINGLE ITINERARY
+|--------------------------------------------------------------------------
+*/
+
+export async function getItinerary(id) {
+
+  const response = await fetch(
+    `${API}/itineraries/${id}`,
+    {
+      headers: {
+        Authorization: `Bearer ${getToken()}`,
+      },
+    }
+  );
+
+  if (!response.ok) {
+
+    const error = await response.json();
+
+    throw new Error(error.message);
+
+  }
+
+  return await response.json();
+
+}
+/*
+|--------------------------------------------------------------------------
 | GET SINGLE USER
 |--------------------------------------------------------------------------
 */
