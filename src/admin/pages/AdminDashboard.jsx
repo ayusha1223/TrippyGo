@@ -1,4 +1,5 @@
 import AdminSidebar from "../components/AdminSidebar";
+import AdminStats from "../components/AdminStats";
 
 export default function AdminDashboard() {
   return (
@@ -21,6 +22,12 @@ export default function AdminDashboard() {
           <p className="text-gray-500 mt-2">
             Welcome to the TrippyGo Administration Panel.
           </p>
+
+          <div className="mt-10">
+
+    <AdminStats />
+
+</div>
 
         </div>
 
