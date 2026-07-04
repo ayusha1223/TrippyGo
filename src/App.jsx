@@ -19,6 +19,7 @@ import Saved from "./saved/pages/Saved";
 import Favorites from "./favorites/pages/Favorites";
 import Settings from "./settings/pages/Settings";
 import AdminDashboard from "./admin/pages/AdminDashboard";
+import AdminDestinations from "./admin/pages/AdminDestinations";
 function App() {
 return ( <BrowserRouter> <Routes>
 
@@ -39,6 +40,10 @@ return ( <BrowserRouter> <Routes>
     <Route path="/dashboard" element={<Dashboard />} />
     <Route path="/favorites" element={<Favorites />} />
     <Route path="/explorer" element={<Adventures />} />
+    <Route
+  path="/admin/destinations"
+  element={<AdminDestinations />}
+/>
     <Route
   path="/admin"
   element={<AdminDashboard />}
