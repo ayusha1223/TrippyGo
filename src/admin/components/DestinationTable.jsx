@@ -6,8 +6,11 @@ import {
 } from "react-icons/fa";
 
 import { getDestinations } from "../../services/destinationService";
+import { deleteDestination } from "../services/adminService";
 
-export default function DestinationTable() {
+export default function DestinationTable({
+  onEdit,
+}) {
 
   const [destinations, setDestinations] = useState([]);
   const [search, setSearch] = useState("");
@@ -31,6 +34,33 @@ export default function DestinationTable() {
     }
 
   }
+  async function handleDelete(id) {
+
+  const confirmDelete = window.confirm(
+    "Are you sure you want to delete this destination?"
+  );
+
+  if (!confirmDelete) return;
+
+  try {
+
+    await deleteDestination(id);
+
+    setDestinations((prev) =>
+      prev.filter((destination) => destination._id !== id)
+    );
+
+    alert("Destination deleted successfully.");
+
+  } catch (error) {
+
+    console.error(error);
+
+    alert("Failed to delete destination.");
+
+  }
+
+}
 
   const filtered = destinations.filter((destination) =>
     destination.name
@@ -149,37 +179,49 @@ export default function DestinationTable() {
 
                 </td>
 
-                <td>
+          <td className="py-4 text-center">
 
-                  <div className="flex justify-center gap-3">
+  <div className="flex items-center justify-center gap-3">
 
-                    <button
-                      className="
-                        w-10
-                        h-10
-                        rounded-lg
-                        bg-yellow-100
-                        text-yellow-700
-                      "
-                    >
-                      <FaEdit />
-                    </button>
+    <button
+      onClick={() => onEdit(destination._id)}
+      className="
+        w-10
+        h-10
+        flex
+        items-center
+        justify-center
+        rounded-lg
+        bg-yellow-100
+        text-yellow-700
+        hover:bg-yellow-200
+        transition
+      "
+    >
+      <FaEdit size={16} />
+    </button>
 
-                    <button
-                      className="
-                        w-10
-                        h-10
-                        rounded-lg
-                        bg-red-100
-                        text-red-600
-                      "
-                    >
-                      <FaTrash />
-                    </button>
+    <button
+      onClick={() => handleDelete(destination._id)}
+      className="
+        w-10
+        h-10
+        flex
+        items-center
+        justify-center
+        rounded-lg
+        bg-red-100
+        text-red-600
+        hover:bg-red-200
+        transition
+      "
+    >
+      <FaTrash size={16} />
+    </button>
 
-                  </div>
+  </div>
 
-                </td>
+</td>
 
               </tr>
 

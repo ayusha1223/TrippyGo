@@ -11,6 +11,11 @@ export default function AdminDestinations() {
   const [showAddModal, setShowAddModal] =
     useState(false);
 
+    const [editingDestination, setEditingDestination] =
+  useState(null);
+
+  console.log(editingDestination);
+
   return (
     <div className="min-h-screen bg-gray-100 flex">
 
@@ -64,19 +69,30 @@ export default function AdminDestinations() {
 
         <div className="mt-10">
 
-          <DestinationTable />
+         <DestinationTable
+  onEdit={setEditingDestination}
+/>
 
         </div>
 
       </div>
 
-      {showAddModal && (
+     {showAddModal && (
 
-        <AddDestinationModal
-          onClose={() => setShowAddModal(false)}
-        />
+  <AddDestinationModal
+    onClose={() => setShowAddModal(false)}
+  />
 
-      )}
+)}
+
+{editingDestination && (
+
+  <AddDestinationModal
+    destinationId={editingDestination}
+    onClose={() => setEditingDestination(null)}
+  />
+
+)}
 
     </div>
   );
