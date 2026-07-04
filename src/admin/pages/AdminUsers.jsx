@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
+import AddUserModal from "../components/AddUserModal";
+import { FaPlus } from "react-icons/fa";
 
 import AdminSidebar from "../components/AdminSidebar";
-import { getUsers } from "../services/adminService";
+import {
+  getUsers,
+  deleteUser,
+} from "../services/adminService";
+import EditUserModal from "../components/EditUserModal";
 
 import {
   FaSearch,
@@ -12,6 +18,8 @@ export default function AdminUsers() {
 
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState("");
+  const [editingUser, setEditingUser] = useState(null);
+  const [showAddModal, setShowAddModal] = useState(false);
 
   useEffect(() => {
     loadUsers();
@@ -32,6 +40,33 @@ export default function AdminUsers() {
     }
 
   }
+  async function handleDelete(id) {
+
+  const confirmDelete = window.confirm(
+    "Are you sure you want to delete this user?"
+  );
+
+  if (!confirmDelete) return;
+
+  try {
+
+    await deleteUser(id);
+
+    setUsers((prev) =>
+      prev.filter((user) => user._id !== id)
+    );
+
+    alert("User deleted successfully.");
+
+  } catch (error) {
+
+    console.error(error);
+
+    alert("Failed to delete user.");
+
+  }
+
+}
 
   const filtered = users.filter((user) =>
     user.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -46,17 +81,39 @@ export default function AdminUsers() {
 
       <div className="flex-1 ml-72 p-10">
 
-        <div className="mb-10">
+        <div className="mb-10 flex justify-between items-center">
 
-          <h1 className="text-4xl font-bold text-[#0F4C81]">
-            Users Management
-          </h1>
+  <div>
 
-          <p className="text-gray-500 mt-2">
-            Manage all registered users.
-          </p>
+    <h1 className="text-4xl font-bold text-[#0F4C81]">
+      Users Management
+    </h1>
 
-        </div>
+    <p className="text-gray-500 mt-2">
+      Manage all registered users.
+    </p>
+
+  </div>
+
+  <button
+    onClick={() => setShowAddModal(true)}
+    className="
+      bg-[#0F4C81]
+      text-white
+      px-6
+      py-4
+      rounded-xl
+      flex
+      items-center
+      gap-3
+      hover:bg-blue-700
+    "
+  >
+    <FaPlus />
+    Add User
+  </button>
+
+</div>
 
         <div className="bg-white rounded-3xl shadow-lg p-8">
 
@@ -87,6 +144,7 @@ export default function AdminUsers() {
                   <th className="text-left py-4">Role</th>
                   <th className="text-left py-4">Saved</th>
                   <th className="text-left py-4">Favorites</th>
+<th className="text-center py-4">Actions</th>
 
                 </tr>
 
@@ -143,10 +201,44 @@ export default function AdminUsers() {
                     </td>
 
                     <td>
+  {user.favoriteDestinations?.length || 0}
+</td>
 
-                      {user.favoriteDestinations?.length || 0}
+<td className="py-4">
 
-                    </td>
+  <div className="flex justify-center gap-3">
+
+    <button
+      onClick={() => setEditingUser(user._id)}
+      className="
+        bg-yellow-100
+        text-yellow-700
+        px-4
+        py-2
+        rounded-lg
+        hover:bg-yellow-200
+      "
+    >
+      Edit
+    </button>
+
+    <button
+      onClick={() => handleDelete(user._id)}
+      className="
+        bg-red-100
+        text-red-600
+        px-4
+        py-2
+        rounded-lg
+        hover:bg-red-200
+      "
+    >
+      Delete
+    </button>
+
+  </div>
+
+</td>
 
                   </tr>
 
@@ -156,6 +248,23 @@ export default function AdminUsers() {
 
             </table>
 
+            {showAddModal && (
+
+  <AddUserModal
+    onClose={() => setShowAddModal(false)}
+    onCreated={loadUsers}
+  />
+
+)}
+
+{editingUser && (
+
+  <EditUserModal
+    userId={editingUser}
+    onClose={() => setEditingUser(null)}
+  />
+
+)}
           </div>
 
         </div>

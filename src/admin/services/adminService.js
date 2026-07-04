@@ -104,6 +104,117 @@ export async function getUsers() {
 }
 /*
 |--------------------------------------------------------------------------
+| CREATE USER
+|--------------------------------------------------------------------------
+*/
+
+export async function createUser(data) {
+
+  const response = await fetch(
+    `${API}/users`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${getToken()}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }
+  );
+
+  if (!response.ok) {
+
+    const error = await response.json();
+
+    throw new Error(error.message);
+
+  }
+
+  return await response.json();
+
+}
+/*
+|--------------------------------------------------------------------------
+| DELETE USER
+|--------------------------------------------------------------------------
+*/
+
+export async function deleteUser(id) {
+
+  const response = await fetch(
+    `${API}/users/${id}`,
+    {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to delete user");
+  }
+
+  return await response.json();
+
+}
+/*
+|--------------------------------------------------------------------------
+| UPDATE USER
+|--------------------------------------------------------------------------
+*/
+
+export async function updateUser(id, data) {
+
+  const response = await fetch(
+    `${API}/users/${id}`,
+    {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${getToken()}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }
+  );
+
+  if (!response.ok) {
+
+    const error = await response.json();
+
+    throw new Error(error.message);
+
+  }
+
+  return await response.json();
+
+}
+/*
+|--------------------------------------------------------------------------
+| GET ALL ITINERARIES
+|--------------------------------------------------------------------------
+*/
+
+export async function getItineraries() {
+
+  const response = await fetch(
+    `${API}/itineraries`,
+    {
+      headers: {
+        Authorization: `Bearer ${getToken()}`,
+      },
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch itineraries");
+  }
+
+  return await response.json();
+
+}
+/*
+|--------------------------------------------------------------------------
 | GET SINGLE USER
 |--------------------------------------------------------------------------
 */

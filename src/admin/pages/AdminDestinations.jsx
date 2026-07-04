@@ -14,8 +14,6 @@ export default function AdminDestinations() {
     const [editingDestination, setEditingDestination] =
   useState(null);
 
-  console.log(editingDestination);
-
   return (
     <div className="min-h-screen bg-gray-100 flex">
 
