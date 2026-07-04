@@ -272,6 +272,40 @@ export async function getItinerary(id) {
 }
 /*
 |--------------------------------------------------------------------------
+| ADMIN PROFILE
+|--------------------------------------------------------------------------
+*/
+
+/*
+|--------------------------------------------------------------------------
+| GET ADMIN PROFILE
+|--------------------------------------------------------------------------
+*/
+
+export async function getAdminProfile() {
+
+  const response = await fetch(
+    `${API}/profile`,
+    {
+      headers: {
+        Authorization: `Bearer ${getToken()}`,
+      },
+    }
+  );
+
+  if (!response.ok) {
+
+    const error = await response.json();
+
+    throw new Error(error.message);
+
+  }
+
+  return await response.json();
+
+}
+/*
+|--------------------------------------------------------------------------
 | GET SINGLE USER
 |--------------------------------------------------------------------------
 */

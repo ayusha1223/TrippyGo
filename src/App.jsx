@@ -22,6 +22,7 @@ import AdminDashboard from "./admin/pages/AdminDashboard";
 import AdminDestinations from "./admin/pages/AdminDestinations";
 import AdminUsers from "./admin/pages/AdminUsers";
 import AdminItineraries from "./admin/pages/AdminItineraries";
+import AdminSettings from "./admin/pages/AdminSettings";
 function App() {
 return ( <BrowserRouter> <Routes>
 
@@ -49,6 +50,10 @@ return ( <BrowserRouter> <Routes>
 <Route
   path="/admin/itineraries"
   element={<AdminItineraries />}
+/>
+<Route
+  path="/admin/settings"
+  element={<AdminSettings />}
 />
 
 <Route

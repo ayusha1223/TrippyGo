@@ -30,11 +30,6 @@ const menu = [
     path: "/admin/itineraries",
   },
   {
-    title: "AI",
-    icon: <FaRobot />,
-    path: "/admin/ai",
-  },
-  {
     title: "Settings",
     icon: <FaCog />,
     path: "/admin/settings",
