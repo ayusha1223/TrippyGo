@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   FaMapMarkerAlt,
   FaHeart,
@@ -18,11 +19,8 @@ export default function PlacesToVisit({
 }) {
   return (
     <section className="max-w-7xl mx-auto px-10 py-14">
-
       <div className="flex justify-between items-center mb-8">
-
         <div>
-
           <h2 className="text-4xl font-bold text-[#1A5F7A]">
             Places To Visit
           </h2>
@@ -30,26 +28,19 @@ export default function PlacesToVisit({
           <p className="text-gray-500 mt-2">
             Discover the most iconic places around this destination.
           </p>
-
         </div>
-
       </div>
 
       <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8">
-
         {places.map((place, index) => (
-
           <PlaceCard
             key={index}
             place={place}
             index={index}
             destinationId={destinationId}
           />
-
         ))}
-
       </div>
-
     </section>
   );
 }
@@ -62,7 +53,11 @@ function PlaceCard({
   const [favorite, setFavorite] = useState(false);
   const [saved, setSaved] = useState(false);
 
-  async function handleFavorite() {
+  const navigate = useNavigate();
+
+  async function handleFavorite(e) {
+    e.stopPropagation();
+
     try {
       await toggleFavorite({
         destination: destinationId,
@@ -73,13 +68,14 @@ function PlaceCard({
       });
 
       setFavorite(!favorite);
-
     } catch (err) {
       console.error(err);
     }
   }
 
-  async function handleSave() {
+  async function handleSave(e) {
+    e.stopPropagation();
+
     try {
       await toggleSave({
         destination: destinationId,
@@ -90,18 +86,25 @@ function PlaceCard({
       });
 
       setSaved(!saved);
-
     } catch (err) {
       console.error(err);
     }
   }
 
   return (
-
-    <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition">
-
+    <div
+      onClick={() =>
+        navigate("/activity-details", {
+          state: {
+            item: place,
+            type: "place",
+            destinationId,
+          },
+        })
+      }
+      className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition cursor-pointer"
+    >
       <div className="relative">
-
         <img
           src={
             place.image ||
@@ -112,7 +115,6 @@ function PlaceCard({
         />
 
         <div className="absolute top-4 right-4 flex gap-3">
-
           <button
             onClick={handleFavorite}
             className="w-10 h-10 rounded-full bg-white shadow flex items-center justify-center"
@@ -134,21 +136,16 @@ function PlaceCard({
               <FaRegBookmark className="text-[#1A5F7A]" />
             )}
           </button>
-
         </div>
-
       </div>
 
       <div className="p-6">
-
         <div className="flex items-center gap-2 text-[#1A5F7A] mb-3">
-
           <FaMapMarkerAlt />
 
           <span className="font-semibold">
             Must Visit
           </span>
-
         </div>
 
         <h3 className="text-2xl font-bold">
@@ -158,10 +155,7 @@ function PlaceCard({
         <p className="mt-3 text-gray-500 leading-7">
           {place.description}
         </p>
-
       </div>
-
     </div>
-
   );
 }

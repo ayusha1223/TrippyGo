@@ -1,4 +1,4 @@
-const API = "http://localhost:5000/api/adventures";
+const API = "http://localhost:5001/api/adventures";
 
 // Get all adventures
 export async function getAdventures() {

@@ -1,5 +1,5 @@
 
-const API_URL = "http://localhost:5000/api/destinations";
+const API_URL = "http://localhost:5001/api/destinations";
 
 // Get all destinations
 export async function getDestinations() {

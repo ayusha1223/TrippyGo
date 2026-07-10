@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   FaStar,
   FaMapMarkerAlt,
@@ -19,11 +20,8 @@ export default function HotelsSection({
 }) {
   return (
     <section className="max-w-7xl mx-auto px-10 py-14">
-
       <div className="flex justify-between items-center mb-8">
-
         <div>
-
           <h2 className="text-4xl font-bold text-[#1A5F7A]">
             Hotels Nearby
           </h2>
@@ -31,26 +29,19 @@ export default function HotelsSection({
           <p className="text-gray-500 mt-2">
             Stay at the best hotels and resorts near your destination.
           </p>
-
         </div>
-
       </div>
 
       <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8">
-
         {hotels.map((hotel, index) => (
-
           <HotelCard
             key={index}
             hotel={hotel}
             index={index}
             destinationId={destinationId}
           />
-
         ))}
-
       </div>
-
     </section>
   );
 }
@@ -63,7 +54,11 @@ function HotelCard({
   const [favorite, setFavorite] = useState(false);
   const [saved, setSaved] = useState(false);
 
-  async function handleFavorite() {
+  const navigate = useNavigate();
+
+  async function handleFavorite(e) {
+    e.stopPropagation();
+
     try {
       await toggleFavorite({
         destination: destinationId,
@@ -74,13 +69,14 @@ function HotelCard({
       });
 
       setFavorite(!favorite);
-
     } catch (err) {
       console.error(err);
     }
   }
 
-  async function handleSave() {
+  async function handleSave(e) {
+    e.stopPropagation();
+
     try {
       await toggleSave({
         destination: destinationId,
@@ -91,15 +87,22 @@ function HotelCard({
       });
 
       setSaved(!saved);
-
     } catch (err) {
       console.error(err);
     }
   }
 
   return (
-
     <div
+      onClick={() =>
+        navigate("/activity-details", {
+          state: {
+            item: hotel,
+            type: "hotel",
+            destinationId,
+          },
+        })
+      }
       className="
         bg-white
         rounded-3xl
@@ -108,11 +111,10 @@ function HotelCard({
         hover:shadow-2xl
         hover:-translate-y-2
         transition-all
+        cursor-pointer
       "
     >
-
       <div className="relative">
-
         <img
           src={
             hotel.image ||
@@ -127,7 +129,6 @@ function HotelCard({
         </span>
 
         <div className="absolute top-4 right-4 flex gap-3">
-
           <button
             onClick={handleFavorite}
             className="w-10 h-10 rounded-full bg-white shadow flex items-center justify-center"
@@ -149,13 +150,10 @@ function HotelCard({
               <FaRegBookmark className="text-[#1A5F7A]" />
             )}
           </button>
-
         </div>
-
       </div>
 
       <div className="p-6">
-
         <h3 className="text-2xl font-bold">
           {hotel.name}
         </h3>
@@ -171,7 +169,6 @@ function HotelCard({
         </div>
 
         <div className="mt-8">
-
           <p className="text-sm text-gray-400">
             Starting From
           </p>
@@ -183,13 +180,8 @@ function HotelCard({
           <p className="text-sm text-gray-500">
             per night
           </p>
-          
-
         </div>
-
       </div>
-
     </div>
-
   );
 }

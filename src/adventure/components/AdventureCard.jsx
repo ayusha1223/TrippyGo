@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   FaHeart,
   FaRegHeart,
@@ -21,6 +22,18 @@ export default function AdventureCard({
   const [favorite, setFavorite] = useState(false);
   const [saved, setSaved] = useState(false);
 
+  const navigate = useNavigate();
+
+  function openDetails() {
+    navigate("/activity-details", {
+      state: {
+        item: adventure,
+        type: "adventure",
+        destinationId: adventure.destination,
+      },
+    });
+  }
+
   async function handleFavorite(e) {
     e.stopPropagation();
 
@@ -34,7 +47,6 @@ export default function AdventureCard({
       });
 
       setFavorite(!favorite);
-
     } catch (err) {
       console.error(err);
     }
@@ -53,7 +65,6 @@ export default function AdventureCard({
       });
 
       setSaved(!saved);
-
     } catch (err) {
       console.error(err);
     }
@@ -61,6 +72,7 @@ export default function AdventureCard({
 
   return (
     <div
+      onClick={openDetails}
       className="
         bg-white
         rounded-3xl
@@ -70,12 +82,12 @@ export default function AdventureCard({
         hover:-translate-y-2
         transition-all
         duration-300
+        cursor-pointer
       "
     >
       {/* Image */}
 
       <div className="relative">
-
         <img
           src={adventure.image}
           alt={adventure.title}
@@ -87,7 +99,6 @@ export default function AdventureCard({
         </span>
 
         <div className="absolute top-4 right-4 flex gap-3">
-
           <button
             onClick={handleFavorite}
             className="w-10 h-10 rounded-full bg-white shadow flex items-center justify-center"
@@ -109,15 +120,12 @@ export default function AdventureCard({
               <FaRegBookmark className="text-[#1A5F7A]" />
             )}
           </button>
-
         </div>
-
       </div>
 
       {/* Content */}
 
       <div className="p-6">
-
         <h2 className="text-2xl font-bold">
           {adventure.title}
         </h2>
@@ -127,7 +135,6 @@ export default function AdventureCard({
         </p>
 
         <div className="mt-5 space-y-3">
-
           <div className="flex items-center gap-2 text-gray-600">
             <FaMapMarkerAlt />
             {adventure.location}
@@ -142,13 +149,10 @@ export default function AdventureCard({
             <FaStar />
             {adventure.rating}
           </div>
-
         </div>
 
         <div className="flex justify-between items-center mt-8">
-
           <div>
-
             <p className="text-sm text-gray-400">
               Starting From
             </p>
@@ -156,10 +160,13 @@ export default function AdventureCard({
             <h3 className="text-3xl font-bold text-[#1A5F7A]">
               ${adventure.price}
             </h3>
-
           </div>
 
           <button
+            onClick={(e) => {
+              e.stopPropagation();
+              openDetails();
+            }}
             className="
               bg-[#1A5F7A]
               hover:bg-[#15485e]
@@ -173,15 +180,11 @@ export default function AdventureCard({
               transition
             "
           >
-            Book Now
-
+            See Details
             <FaArrowRight />
           </button>
-
         </div>
-
       </div>
-
     </div>
   );
 }

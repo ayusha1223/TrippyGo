@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   FaArrowRight,
   FaHeart,
@@ -18,11 +19,8 @@ export default function AdventureSection({
 }) {
   return (
     <section className="max-w-7xl mx-auto px-10 py-14">
-
       <div className="flex justify-between items-center mb-8">
-
         <div>
-
           <h2 className="text-4xl font-bold text-[#1A5F7A]">
             Adventure & Treks
           </h2>
@@ -30,26 +28,19 @@ export default function AdventureSection({
           <p className="text-gray-500 mt-2">
             Experience thrilling adventures around this destination.
           </p>
-
         </div>
-
       </div>
 
       <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8">
-
         {adventures.map((adventure, index) => (
-
           <AdventureCard
             key={index}
             adventure={adventure}
             index={index}
             destinationId={destinationId}
           />
-
         ))}
-
       </div>
-
     </section>
   );
 }
@@ -62,7 +53,11 @@ function AdventureCard({
   const [favorite, setFavorite] = useState(false);
   const [saved, setSaved] = useState(false);
 
-  async function handleFavorite() {
+  const navigate = useNavigate();
+
+  async function handleFavorite(e) {
+    e.stopPropagation();
+
     try {
       await toggleFavorite({
         destination: destinationId,
@@ -73,13 +68,14 @@ function AdventureCard({
       });
 
       setFavorite(!favorite);
-
     } catch (err) {
       console.error(err);
     }
   }
 
-  async function handleSave() {
+  async function handleSave(e) {
+    e.stopPropagation();
+
     try {
       await toggleSave({
         destination: destinationId,
@@ -90,15 +86,24 @@ function AdventureCard({
       });
 
       setSaved(!saved);
-
     } catch (err) {
       console.error(err);
     }
   }
 
-  return (
+  function openDetails() {
+    navigate("/activity-details", {
+      state: {
+        item: adventure,
+        type: "adventure",
+        destinationId,
+      },
+    });
+  }
 
+  return (
     <div
+      onClick={openDetails}
       className="
         bg-white
         rounded-3xl
@@ -106,11 +111,10 @@ function AdventureCard({
         shadow-lg
         hover:shadow-2xl
         transition-all
+        cursor-pointer
       "
     >
-
       <div className="relative">
-
         <img
           src={
             adventure.image ||
@@ -125,7 +129,6 @@ function AdventureCard({
         </span>
 
         <div className="absolute top-4 right-4 flex gap-3">
-
           <button
             onClick={handleFavorite}
             className="w-10 h-10 rounded-full bg-white shadow flex items-center justify-center"
@@ -147,13 +150,10 @@ function AdventureCard({
               <FaRegBookmark className="text-[#1A5F7A]" />
             )}
           </button>
-
         </div>
-
       </div>
 
       <div className="p-6">
-
         <h3 className="text-2xl font-bold">
           {adventure.title}
         </h3>
@@ -163,12 +163,15 @@ function AdventureCard({
         </p>
 
         <div className="flex justify-between items-center mt-6">
-
           <span className="text-3xl font-bold text-[#1A5F7A]">
             ${adventure.price}
           </span>
 
           <button
+            onClick={(e) => {
+              e.stopPropagation();
+              openDetails();
+            }}
             className="
               bg-[#1A5F7A]
               text-white
@@ -185,12 +188,8 @@ function AdventureCard({
             Details
             <FaArrowRight />
           </button>
-
         </div>
-
       </div>
-
     </div>
-
   );
 }

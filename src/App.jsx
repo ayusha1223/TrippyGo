@@ -23,6 +23,7 @@ import AdminDestinations from "./admin/pages/AdminDestinations";
 import AdminUsers from "./admin/pages/AdminUsers";
 import AdminItineraries from "./admin/pages/AdminItineraries";
 import AdminSettings from "./admin/pages/AdminSettings";
+import ActivityDetails from "./explore/pages/ActivityDetails";
 function App() {
 return ( <BrowserRouter> <Routes>
 
@@ -54,6 +55,10 @@ return ( <BrowserRouter> <Routes>
 <Route
   path="/admin/settings"
   element={<AdminSettings />}
+/>
+<Route
+  path="/activity-details"
+  element={<ActivityDetails />}
 />
 
 <Route

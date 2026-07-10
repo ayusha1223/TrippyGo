@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import {
   FaHeart,
   FaRegHeart,
@@ -60,44 +62,62 @@ function ThingCard({
 }) {
   const [favorite, setFavorite] = useState(false);
   const [saved, setSaved] = useState(false);
+  const navigate = useNavigate();
 
-  async function handleFavorite() {
-    try {
-      await toggleFavorite({
-        destination: destinationId,
-        type: "thing",
-        itemId: `${destinationId}-${index}`,
-        title: item.title,
-        image: item.image,
-      });
+ async function handleFavorite(e) {
 
-      setFavorite(!favorite);
+  e.stopPropagation();
 
-    } catch (err) {
-      console.error(err);
-    }
+  try {
+    await toggleFavorite({
+      destination: destinationId,
+      type: "thing",
+      itemId: `${destinationId}-${index}`,
+      title: item.title,
+      image: item.image,
+    });
+
+    setFavorite(!favorite);
+
+  } catch (err) {
+    console.error(err);
   }
+}
 
-  async function handleSave() {
-    try {
-      await toggleSave({
-        destination: destinationId,
-        type: "thing",
-        itemId: `${destinationId}-${index}`,
-        title: item.title,
-        image: item.image,
-      });
+async function handleSave(e) {
 
-      setSaved(!saved);
+  e.stopPropagation();
 
-    } catch (err) {
-      console.error(err);
-    }
+  try {
+    await toggleSave({
+      destination: destinationId,
+      type: "thing",
+      itemId: `${destinationId}-${index}`,
+      title: item.title,
+      image: item.image,
+    });
+
+    setSaved(!saved);
+
+  } catch (err) {
+    console.error(err);
   }
+}
 
   return (
 
-    <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition">
+  <div
+    onClick={() =>
+      navigate("/activity-details", {
+        state: {
+          item,
+          type: "thing",
+          destinationId,
+        },
+      })
+    }
+    className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition cursor-pointer"
+  >
 
       <div className="relative">
 
@@ -112,10 +132,10 @@ function ThingCard({
 
         <div className="absolute top-4 right-4 flex gap-3">
 
-          <button
-            onClick={handleFavorite}
-            className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow"
-          >
+         <button
+  onClick={handleFavorite}
+  className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow"
+>
             {favorite ? (
               <FaHeart className="text-red-500" />
             ) : (
@@ -123,10 +143,10 @@ function ThingCard({
             )}
           </button>
 
-          <button
-            onClick={handleSave}
-            className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow"
-          >
+        <button
+  onClick={handleSave}
+  className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow"
+>
             {saved ? (
               <FaBookmark className="text-[#1A5F7A]" />
             ) : (
