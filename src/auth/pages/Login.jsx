@@ -28,35 +28,38 @@ function Login() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    try {
-      setLoading(true);
+  try {
+    setLoading(true);
 
-      const data = await loginUser(formData);
+    const data = await loginUser(formData);
 
-      localStorage.setItem(
-        "token",
-        data.token
-      );
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("user", JSON.stringify(data.user));
 
-     toast.success("Welcome back! Login successful.", {
-  icon: "🎉",
-});
+    toast.success("Welcome back! Login successful.", {
+      icon: "🎉",
+    });
 
-setTimeout(() => {
-  navigate("/dashboard");
-}, 1200);
-
-    } catch (error) {
-      toast.error(
-  error.response?.data?.message ||
-    "Invalid email or password"
-);
+    if (data.user.role === "admin") {
+      navigate("/admin", {
+        replace: true,
+      });
+    } else {
+      navigate("/dashboard", {
+        replace: true,
+      });
     }
-
+  } catch (error) {
+    toast.error(
+      error.response?.data?.message ||
+        "Invalid email or password"
+    );
+  } finally {
     setLoading(false);
-  };
+  }
+};
 
   return (
     <div
