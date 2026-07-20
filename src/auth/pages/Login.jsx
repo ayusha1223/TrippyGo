@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../services/authService";
+import toast from "react-hot-toast";
 import heroImage from "../../assets/images/everest.jpg";
 
 function Login() {
@@ -39,15 +40,19 @@ function Login() {
         data.token
       );
 
-      alert("Login Successful!");
+     toast.success("Welcome back! Login successful.", {
+  icon: "🎉",
+});
 
-      navigate("/dashboard");
+setTimeout(() => {
+  navigate("/dashboard");
+}, 1200);
 
     } catch (error) {
-      alert(
-        error.response?.data?.message ||
-        "Login Failed"
-      );
+      toast.error(
+  error.response?.data?.message ||
+    "Invalid email or password"
+);
     }
 
     setLoading(false);

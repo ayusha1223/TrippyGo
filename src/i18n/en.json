@@ -1,11 +1,158 @@
 {
+  "settings": {
+    "title": "Settings",
+    "description": "Customize your TrippyGo experience."
+  },
+
+  "language": {
+    "title": "Language",
+    "description": "Choose your preferred language.",
+    "english": "English",
+    "englishDescription": "English language",
+    "nepali": "Nepali",
+    "nepaliDescription": "Nepali language"
+  },
+
+  "appearance": {
+    "title": "Appearance",
+    "description": "Customize the appearance of TrippyGo.",
+    "theme": "Theme",
+    "lightTheme": "Light Theme",
+    "lightThemeDescription": "Clean and bright appearance.",
+    "compactLayout": "Compact Layout",
+    "compactLayoutDescription": "Reduce spacing to show more content.",
+    "animations": "Show Animations",
+    "animationsDescription": "Enable smooth transitions and hover effects.",
+    "roundedCards": "Rounded Cards",
+    "roundedCardsDescription": "Use rounded corners throughout the application."
+  },
+
+  "navigation": {
+    "home": "Home",
+    "explore": "Explore",
+    "destinations": "Destinations",
+    "adventures": "Adventures",
+    "itinerary": "Itinerary",
+    "favourites": "Favourites",
+    "saved": "Saved",
+    "profile": "Profile",
+    "settings": "Settings",
+    "login": "Login",
+    "logout": "Logout"
+  },
+
+  "common": {
+    "welcome": "Welcome to TrippyGo",
+    "search": "Search",
+    "save": "Save",
+    "cancel": "Cancel",
+    "close": "Close",
+    "loading": "Loading...",
+    "enabled": "Enabled",
+    "disabled": "Disabled"
+  },
+  "sidebar": {
+  "tagline": "Explore Nepal",
+  "menu": "Menu",
   "dashboard": "Dashboard",
   "destinations": "Destinations",
-  "adventureExplorer": "Adventure Explorer",
+  "explorer": "Explorer",
   "savedPlaces": "Saved Places",
   "favorites": "Favorites",
-  "myItineraries": "My Itineraries",
+  "itineraries": "My Itineraries",
   "settings": "Settings",
+  "aiAssistant": "AI Assistant",
+  "aiDescription": "Chat with TrippyGo AI",
   "support": "Support",
-  "logout": "Log Out"
+  "logout": "Logout"
+},
+"topbar": {
+  "searchPlaceholder": "Search destinations...",
+  "searchLabel": "Search destinations",
+  "noResults": "No destinations found.",
+  "notifications": "Notifications",
+  "profileImage": "Profile",
+  "member": "Explorer Member",
+  "categories": {
+    "mountain": "Mountain",
+    "lakes": "Lakes",
+    "culture": "Culture",
+    "wildlife": "Wildlife",
+    "adventure": "Adventure",
+    "food": "Food"
+  }
+},
+"notification": {
+  "title": "Notifications",
+  "description": "Manage your notification preferences.",
+  "destinationUpdates": {
+    "title": "Destination Updates",
+    "description": "Receive updates about new destinations."
+  },
+  "aiSuggestions": {
+    "title": "AI Travel Suggestions",
+    "description": "Get personalized AI travel recommendations."
+  },
+  "itineraryReminders": {
+    "title": "Itinerary Reminders",
+    "description": "Receive reminders for your saved itineraries."
+  },
+  "travelNews": {
+    "title": "Travel News",
+    "description": "Stay informed about tourism news in Nepal."
+  },
+  "promotions": {
+    "title": "Special Offers",
+    "description": "Receive discounts and promotional offers."
+  }
+},
+"footer": {
+  "rights": "All rights reserved.",
+  "tagline": "Your gateway to the Himalayas.",
+  "company": "Company",
+  "support": "Support",
+  "connect": "Connect",
+  "closeCard": "Close information card",
+
+  "links": {
+    "about": "About Us",
+    "faq": "FAQ",
+    "contact": "Contact Support",
+    "insurance": "Travel Insurance",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+
+  "modals": {
+    "about": {
+      "title": "About TrippyGo",
+      "content": "TrippyGo is a Nepal-focused tourism platform designed to make travel planning easier, faster, and more personalised for domestic and international travellers.\n\nNepal offers Himalayan trekking routes, cultural heritage sites, wildlife destinations, adventure activities, and peaceful countryside experiences. However, travellers often need to search through several websites to find destination information and organise their journey. TrippyGo brings this information together in one accessible platform.\n\nUsers can explore destinations across Nepal, learn about available activities, save favourite places, and generate personalised itineraries based on their interests and travel preferences.\n\nThe platform is designed for solo travellers, students, families, couples, and adventure seekers. Its responsive design makes it accessible on desktop, tablet, and mobile devices.\n\nOUR MISSION\n\nOur mission is to help travellers confidently discover Nepal while promoting its natural beauty, cultural diversity, local communities, and lesser-known destinations.\n\nWHAT TRIPPYGO OFFERS\n\n• Popular and lesser-known destinations across Nepal\n• Personalised travel itinerary generation\n• Destination search and filtering\n• Saved destinations and favourites\n• Trekking, cultural, and adventure activities\n• Essential destination and travel information\n• A simple platform for planning a complete Nepal journey"
+    },
+
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "content": "1. What is TrippyGo?\n\nTrippyGo is a tourism and travel-planning platform that helps users discover destinations in Nepal, explore activities, save favourite places, and generate personalised travel itineraries.\n\n2. Do I need an account?\n\nYou can browse general destination information without an account. An account is required to save favourites, create itineraries, and access personalised features.\n\n3. How does the itinerary generator work?\n\nThe generator uses your selected destination, interests, available time, and travel preferences to suggest a personalised travel plan.\n\n4. Can I change my generated itinerary?\n\nYes. You can adjust your itinerary according to your schedule, interests, budget, and travel requirements.\n\n5. Can I save destinations for later?\n\nYes. Logged-in users can add destinations to their favourites and access them later.\n\n6. Does TrippyGo make hotel or flight bookings?\n\nTrippyGo mainly provides destination information and travel-planning tools. Unless a booking option is displayed, reservations must be completed through the relevant provider.\n\n7. Is the travel information always accurate?\n\nWe aim to provide current information. However, prices, opening hours, permits, road conditions, and weather can change. Confirm critical details before travelling.\n\n8. Is TrippyGo free?\n\nThe main destination-exploration and itinerary-planning features are free unless a feature is clearly identified as paid.\n\n9. Can international travellers use TrippyGo?\n\nYes. TrippyGo is designed for domestic and international travellers.\n\n10. How can I contact TrippyGo?\n\nSelect Contact Support from the footer to view our contact information."
+    },
+
+    "contact": {
+      "title": "Contact Support",
+      "content": "Need help using TrippyGo? Contact our support team using the details below.\n\nEmail: support@trippygo.com\nPhone: +977 9800000000\nSupport hours: Sunday–Friday, 9:00 AM–5:00 PM\nLocation: Kathmandu, Nepal\n\nWhen contacting support, describe the problem clearly and include any relevant error message. Never send your password or sensitive account information."
+    },
+
+    "insurance": {
+      "title": "Travel Insurance",
+      "content": "Travel insurance can provide financial protection when unexpected problems affect your journey.\n\nCONSIDER COVERAGE FOR\n\n• Emergency medical treatment\n• Emergency evacuation and rescue\n• Trip cancellation or interruption\n• Lost, stolen, or delayed baggage\n• Flight delays and missed connections\n• Trekking and adventure activities\n\nStandard policies may exclude high-altitude trekking, mountaineering, rafting, paragliding, and other adventure activities. Confirm that your planned activities and maximum altitude are covered.\n\nTrippyGo does not currently sell insurance. Purchase suitable coverage directly from a licensed insurance provider."
+    },
+
+    "privacy": {
+      "title": "Privacy Policy",
+      "content": "TrippyGo respects your privacy privacy and collects only the information required to operate and improve the platform.\n\nINFORMATION WE MAY COLLECT\n\n• Name and email address\n• Account and profile information\n• Saved destinations and itinerary preferences\n• Basic technical and usage information\n• Messages submitted to customer support\n\nHOW INFORMATION IS USED\n\n• To create and manage user accounts\n• To provide personalised travel features\n• To save favourites and itineraries\n• To respond to support requests\n• To maintain and improve the platform\n\nTrippyGo does not sell users’ personal information. Reasonable measures are used to protect stored information, although no online system can guarantee absolute security.\n\nUsers can contact support to request access to, correction of, or deletion of their account information."
+    },
+
+    "terms": {
+      "title": "Terms of Service",
+      "content": "By accessing or using TrippyGo, you agree to follow these terms.\n\nACCEPTABLE USE\n\n• Provide accurate account information\n• Keep your login details secure\n• Use the platform only for lawful purposes\n• Do not attempt to damage or disrupt the platform\n• Do not access another user’s account without permission\n\nTRAVEL INFORMATION\n\nDestination details and generated itineraries are provided for planning purposes. Conditions, prices, schedules, permits, and availability may change. Users must confirm critical information with the relevant provider or authority.\n\nACCOUNT RESPONSIBILITY\n\nYou are responsible for activity performed through your account. TrippyGo may restrict or remove accounts that misuse the platform or violate these terms.\n\nThese terms may be updated when the platform or services change. Continued use after an update means that you accept the revised terms."
+    }
+  }
+}
 }

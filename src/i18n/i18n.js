@@ -13,16 +13,33 @@ i18n
       en: {
         translation: en,
       },
+
       ne: {
         translation: ne,
       },
     },
 
+    supportedLngs: ["en", "ne"],
     fallbackLng: "en",
+
+    detection: {
+      order: ["localStorage", "navigator"],
+      lookupLocalStorage: "language",
+      caches: ["localStorage"],
+    },
 
     interpolation: {
       escapeValue: false,
     },
+
+    react: {
+      useSuspense: false,
+    },
   });
+
+i18n.on("languageChanged", (language) => {
+  localStorage.setItem("language", language);
+  document.documentElement.lang = language;
+});
 
 export default i18n;
