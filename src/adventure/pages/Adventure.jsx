@@ -3,7 +3,6 @@ import { useState } from "react";
 import Sidebar from "../../dashboard/components/Sidebar";
 import Topbar from "../../dashboard/components/Topbar";
 import DashboardFooter from "../../dashboard/components/DashboardFooter";
-
 import AdventureHero from "../components/AdventureHero";
 import AdventureFilters from "../components/AdventureFilters";
 import AdventureGrid from "../components/AdventureGrid";
@@ -33,7 +32,7 @@ export default function Adventures() {
 
           {/* Hero */}
 
-          <AdventureHero />
+         
 
           {/* Filters */}
 

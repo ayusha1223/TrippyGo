@@ -9,32 +9,23 @@ import AIPlannerCard from "../components/AIPlannerCard";
 import DashboardFooter from "../components/DashboardFooter";
 
 export default function Dashboard() {
-
-  const [category, setCategory] = useState("Mountain");
+  // Empty means no filter, so all destinations load initially
+  const [category, setCategory] = useState("");
 
   return (
-    <div className="min-h-screen bg-[#FCF9F8] flex">
-
+    <div className="flex min-h-screen bg-[#FCF9F8]">
       {/* Sidebar */}
-
       <Sidebar />
 
-      {/* Main */}
-
-      <div className="flex-1 ml-64">
-
-        {/* Topbar */}
-
+      {/* Main content */}
+      <div className="ml-64 flex-1">
         <Topbar
           category={category}
           setCategory={setCategory}
         />
 
-        {/* Dashboard */}
-
-        <main className="px-10 py-8 space-y-10">
-
-          <HeroBanner />
+        <main className="space-y-10 px-10 py-8">
+          {/* <HeroBanner /> */}
 
           <StatsCards />
 
@@ -46,11 +37,8 @@ export default function Dashboard() {
           <AIPlannerCard />
 
           <DashboardFooter />
-
         </main>
-
       </div>
-
     </div>
   );
 }
