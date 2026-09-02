@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import InternalNavBar from "../components/InternalNavBar";
+import InternalNavBar from "../components/InternalNavbar";
 import Footer from "../components/Footer";
 
 function AIGuide() {

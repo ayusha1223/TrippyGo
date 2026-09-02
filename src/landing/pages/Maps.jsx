@@ -9,7 +9,7 @@ import {
 } from "react-leaflet";
 
 import "leaflet/dist/leaflet.css";
-import InternalNavBar from "../components/InternalNavBar.jsx";
+import InternalNavBar from "../components/InternalNavbar.jsx";
 import Footer from "../components/Footer.jsx";
 
 function SearchMap({ position }) {
