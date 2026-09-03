@@ -1,4 +1,4 @@
-const API = "http://localhost:5001/api/itineraries";
+const API = "/api/itineraries";
 
 function getToken() {
   return localStorage.getItem("token");

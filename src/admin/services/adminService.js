@@ -1,4 +1,4 @@
-const API = "http://localhost:5001/api/admin";
+const API = "/api/admin";
 
 function getToken() {
   return localStorage.getItem("token");
@@ -337,7 +337,7 @@ export async function getUser(id) {
 export async function createDestination(formData) {
 
   const response = await fetch(
-    "http://localhost:5001/api/admin/destinations",
+    "/api/admin/destinations",
     {
       method: "POST",
       headers: {

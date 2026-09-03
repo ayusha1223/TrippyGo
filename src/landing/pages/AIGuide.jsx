@@ -15,7 +15,7 @@ function AIGuide() {
 
     try {
       const response = await axios.post(
-  "http://localhost:5001/api/ai/guide",
+  "/api/ai/guide",
   {
     prompt: question,
   }

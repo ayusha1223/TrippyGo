@@ -1,7 +1,7 @@
 
 export async function getDestinationById(id) {
   const response = await fetch(
-    `http://localhost:5001/api/destinations/${id}`
+    `/api/destinations/${id}`
   );
 
   if (!response.ok) {

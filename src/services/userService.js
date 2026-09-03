@@ -1,4 +1,4 @@
-const API = "http://localhost:5001/api/users";
+const API = "/api/users";
 
 function getToken() {
   return localStorage.getItem("token");
@@ -94,7 +94,7 @@ export async function uploadProfileImage(file) {
 |--------------------------------------------------------------------------
 */
 
-const ITEM_API = "http://localhost:5001/api/items";
+const ITEM_API = "/api/items";
 
 // Get all saved/favorite items
 export async function getSavedItems() {

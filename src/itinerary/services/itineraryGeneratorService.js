@@ -1,4 +1,4 @@
-const API = "http://localhost:5001/api/ai";
+const API = "/api/ai";
 
 export async function generateItinerary(data) {
   const response = await fetch(`${API}/generate-itinerary`, {

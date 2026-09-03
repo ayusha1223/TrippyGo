@@ -1,4 +1,4 @@
-const API = "http://localhost:5001/api/dashboard";
+const API = "/api/dashboard";
 
 function getToken() {
   return localStorage.getItem("token");

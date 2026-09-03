@@ -114,7 +114,7 @@ function Register() {
       setSubmitting(true);
 
       await axios.post(
-        "http://localhost:5001/api/auth/register",
+        "/api/auth/register",
         {
           name,
           email,
