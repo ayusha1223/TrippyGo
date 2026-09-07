@@ -20,10 +20,11 @@ jobs:
           node-version: 20
 
       - name: Install frontend dependencies
-        working-directory: ./TrippyGo
+
         run: npm ci
 
       - name: Build frontend
+
         run: npm run build
 
 
