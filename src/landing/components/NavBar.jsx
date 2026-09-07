@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 function NavBar() {
   return (
-    <nav className="absolute top-0 left-0 w-full z-50">
-      <div className="max-w-7xl mx-auto mt-6 px-8">
+    <nav className="w-full bg-slate-900">
+      <div className="max-w-7xl mx-auto px-8">
         <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-8 py-4 flex items-center justify-between">
 
           {/* Logo */}
