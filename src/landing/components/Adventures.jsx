@@ -36,7 +36,7 @@ function Adventures() {
               </h3>
 
               <p className="max-w-md mb-5">
-                Experience the world's most iconic trek.
+                Experience the world's most iconic trek in Nepal.
               </p>
 
               <button className="bg-white text-blue-700 px-6 py-3 rounded-full font-semibold">
