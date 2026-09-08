@@ -44,4 +44,8 @@ jobs:
         run: docker build -t ayusha1009/trippygo-frontend:latest .
 
       - name: Push frontend Docker image
+<<<<<<< HEAD
         run: docker push ayusha1009/trippygo-frontend:latest
+=======
+        run: docker push ayusha1009/trippygo-frontend:latest
+>>>>>>> cb7d03a (update frontend CI and Dockerfile)
