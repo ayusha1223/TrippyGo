@@ -1,4 +1,3 @@
-import NavBar from "../components/NavBar";
 import Stats from "../components/Stats";
 import Destinations from "../components/Destinations";
 import Adventures from "../components/Adventures";
@@ -9,7 +8,7 @@ import InternalNavBar from "../components/InternalNavbar";
 
 function LandingPage() {
 return (
-<> <NavBar /> <InternalNavBar /> <Stats /> <Destinations /> <Adventures /> <Footer />
+<> <InternalNavBar /> <Stats /> <Destinations /> <Adventures /> <Footer />
 </>
 );
 }
