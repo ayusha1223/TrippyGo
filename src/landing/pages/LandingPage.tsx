@@ -3,11 +3,13 @@ import Stats from "../components/Stats";
 import Destinations from "../components/Destinations";
 import Adventures from "../components/Adventures";
 import Footer from "../components/Footer";
+import InternalNavBar from "../components/InternalNavbar";
+
 
 
 function LandingPage() {
 return (
-<> <NavBar /> <Stats /> <Destinations /> <Adventures /> <Footer />
+<> <NavBar /> <InternalNavBar /> <Stats /> <Destinations /> <Adventures /> <Footer />
 </>
 );
 }

@@ -75,7 +75,6 @@ function AIGuide() {
       <div className="max-w-5xl mx-auto p-8">
         {loading && (
           <div className="bg-white p-6 rounded-xl shadow">
-            Thinking...
           </div>
         )}
 
